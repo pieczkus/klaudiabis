@@ -1,9 +1,9 @@
 <div id="navbarMain" class="navbar navbar-default filter-bar navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" ui-sref="home">
                 <div class="logo">
-                    <img src="/assets/img/avatar.jpg">
+                    <img src="/assets/img/avatar.jpg" >
                 </div>
                 <p>
                     PPHU<br/>Klaudia Bis
@@ -20,13 +20,13 @@
             <li ui-sref-active="current">
                 <a ui-sref="home.about" class="btn-lg">
                     <i class="glyphicon glyphicon-tag"></i>
-                    <p>{{'ABOUT' | translate}}</p>
+                    <p>{{'HOME.ABOUT' | translate}}</p>
                 </a>
             </li>
             <li ui-sref-active="current">
                 <a ui-sref="home.contact">
                     <i class="glyphicon glyphicon-envelope"></i>
-                    <p>{{'CONTACT' | translate}}</p>
+                    <p>{{'HOME.CONTACT' | translate}}</p>
                 </a>
             </li>
             <li>

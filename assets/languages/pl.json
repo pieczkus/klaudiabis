@@ -1,7 +1,7 @@
 {
-    "HOME": "",
-    "ABOUT": "O Firmie",
-    "CONTACT": "Kontakt",
+    "HOME": "Start",
+    "HOME.ABOUT": "O Firmie",
+    "HOME.CONTACT": "Kontakt",
     "LETS_TALK": "Porozmawiajmy!",
     "COVER": "Dziewiarstwo maszynowe",
     "COVER_TEXT": "Produkcja swetrów, żakietów i płaszczy damskich i młodzieżowych.",

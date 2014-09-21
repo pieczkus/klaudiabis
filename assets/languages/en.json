@@ -1,7 +1,7 @@
 {
     "HOME": "Home",
-    "ABOUT": "About",
-    "CONTACT": "Contact",
+    "HOME.ABOUT": "About",
+    "HOME.CONTACT": "Contact",
     "LETS_TALK": "Let's talk!",
     "COVER": "Knitting industry",
     "COVER_TEXT": "Production of sweaters, jackets and coats for women and youth.",
