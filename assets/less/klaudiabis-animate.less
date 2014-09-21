@@ -1,0 +1,80 @@
+@import 'animate.less';
+
+//MIXINS
+.transition(@transition) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+}
+
+.backface {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.translate3d(@x, @y, @z) {
+  .backface;
+  -webkit-transform: translate3d(@x, @y, @z);
+  -moz-transform: translate3d(@x, @y, @z);
+  -o-transform: translate3d(@x, @y, @z);
+  transform: translate3d(@x, @y, @z);
+}
+
+//GLOBAL TRANSITION CLASS
+#main {
+  .transition(all 1s); //if using child trasition animations, they should all be under this time value, keyframe animations are differen
+}
+
+#navbarMain,
+#content,
+#about,
+#contact,
+#footer {
+  .animated;
+  z-index: 10;
+}
+
+.tempAbs {
+  //mixin to temporarily make this position absolute
+  //so it doesn't conflict with other divs
+}
+
+/* Initial enter and leave */
+#main.ng-enter {
+  #navbarMain {
+    .fadeInDown;
+  }
+  #content, #about, #contact {
+    .fadeInRight;
+  }
+  #footer {
+    .fadeInUp
+  }
+}
+
+#main.ng-leave {
+  #navbarMain {
+    .fadeOutUp;
+  }
+  #content, #about, #contact {
+    .fadeOutLeft;
+  }
+  #footer {
+    .fadeOutDown ;
+  }
+}
+
+#content.ng-leave {
+  .tempAbs; .fadeOutLeft;
+}
+
+/* enter and leave while routing */
+#content.ng-enter {
+  .tempAbs; .fadeInRight;
+}
+
+
+
+

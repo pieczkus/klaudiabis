@@ -1,0 +1,5 @@
+<div>
+    <a ng-repeat="lang in languages track by $index">
+        <img href="" ng-click="selectLanguage(lang)" ng-src="{{getSrc(lang)}}" ng-class="{disabled: isCurrent(lang)}" />
+    </a>
+</div>

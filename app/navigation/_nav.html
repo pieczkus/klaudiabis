@@ -1,0 +1,39 @@
+<div id="navbarMain" class="navbar navbar-default filter-bar navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <div class="logo">
+                    <img src="/assets/img/avatar.jpg">
+                </div>
+                <p>
+                    PPHU<br/>Klaudia Bis
+                </p>
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li ui-sref-active="current">
+                <a ui-sref="home" class="btn-lg">
+                    <i class="glyphicon glyphicon-home"></i>
+                    <p>{{'HOME' | translate}}</p>
+                </a>
+            </li>
+            <li ui-sref-active="current">
+                <a ui-sref="home.about" class="btn-lg">
+                    <i class="glyphicon glyphicon-tag"></i>
+                    <p>{{'ABOUT' | translate}}</p>
+                </a>
+            </li>
+            <li ui-sref-active="current">
+                <a ui-sref="home.contact">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                    <p>{{'CONTACT' | translate}}</p>
+                </a>
+            </li>
+            <li>
+                <language-switcher current="currentLanguage" languages="languages"
+                                   on-language-select="selectLanguage(lang)"></language-switcher>
+            </li>
+        </ul>
+    </div>
+
+</div>
