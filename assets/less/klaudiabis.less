@@ -4,7 +4,7 @@
 @background: #e5e5e5;
 @darkText: #555555;
 @orange: #ec971f;
-@shadow: inset 100px 0px 100px -100px rgba(0,0,0,0.7), inset -100px 0px 100px -100px rgba(0,0,0,0.7);
+@shadow: inset 100px 0px 100px -100px rgba(0, 0, 0, 0.7), inset -100px 0px 100px -100px rgba(0, 0, 0, 0.7);
 
 /* Links */
 a,
@@ -53,6 +53,8 @@ body {
   background-color: rgba(255, 255, 255, 0);
   border-color: transparent;
   padding-top: 15px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
 
 .filter-bar .logo {
@@ -101,6 +103,12 @@ body {
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 3px;
   color: @base;
+}
+
+.filter-bar.filled {
+  background-color: rgba(236, 151, 31, 0.95);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
+  padding-top: 0;
 }
 
 /* Content */
@@ -187,6 +195,7 @@ hr {
   background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(255, 255, 255, .8), rgba(0, 0, 0, 0));
   background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(255, 255, 255, .8), rgba(0, 0, 0, 0));
   background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(255, 255, 255, .8), rgba(0, 0, 0, 0));
+  margin: 0;
 }
 
 #contact {
@@ -200,8 +209,9 @@ hr {
   .footer-content {
     margin-right: auto;
     margin-left: auto;
-    color: #999; /* IE8 proofing */
-    color: rgba(255, 255, 255, .7);
+    color: @darkText;
+    box-shadow: @shadow;
+    -webkit-box-shadow: @shadow;
   }
 
   a {
