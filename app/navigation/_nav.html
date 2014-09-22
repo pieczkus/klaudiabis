@@ -1,39 +1,53 @@
-<div id="navbarMain" class="navbar navbar-default filter-bar navbar-fixed-top" ng-class="{filled:fillNavigation}" >
+<div id="navbarMain" class="navbar navbar-default filter-bar navbar-fixed-top" ng-class="{filled:fillNavigation}"
+     role="navigation">
     <div class="container">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" ui-sref="home">
                 <div class="logo">
-                    <img src="/assets/img/avatar.jpg" >
+                    <img src="/assets/img/avatar.jpg">
                 </div>
                 <p>
                     PPHU<br/>Klaudia Bis
                 </p>
             </a>
         </div>
-        <ul class="nav navbar-nav navbar-right" ng-controller="languageCtrl">
-            <li ui-sref-active="current">
-                <a ui-sref="home" class="btn-lg">
-                    <i class="glyphicon glyphicon-home"></i>
-                    <p>{{'HOME' | translate}}</p>
-                </a>
-            </li>
-            <li ui-sref-active="current">
-                <a ui-sref="home.about" class="btn-lg">
-                    <i class="glyphicon glyphicon-tag"></i>
-                    <p>{{'HOME.ABOUT' | translate}}</p>
-                </a>
-            </li>
-            <li ui-sref-active="current">
-                <a ui-sref="home.contact">
-                    <i class="glyphicon glyphicon-envelope"></i>
-                    <p>{{'HOME.CONTACT' | translate}}</p>
-                </a>
-            </li>
-            <li>
-                <language-switcher current="currentLanguage" languages="languages"
-                                   on-language-select="selectLanguage(lang)"></language-switcher>
-            </li>
-        </ul>
-    </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#"></a></li>
+            </ul>
 
+            <ul class="nav navbar-nav navbar-right" ng-controller="languageCtrl">
+                <li ui-sref-active="current">
+                    <a ui-sref="home" class="btn-lg">
+                        <i class="glyphicon glyphicon-home"></i>
+
+                        <p>{{'HOME' | translate}}</p>
+                    </a>
+                </li>
+                <li ui-sref-active="current">
+                    <a ui-sref="home.about" class="btn-lg">
+                        <i class="glyphicon glyphicon-tag"></i>
+
+                        <p>{{'HOME.ABOUT' | translate}}</p>
+                    </a>
+                </li>
+                <li ui-sref-active="current">
+                    <a ui-sref="home.contact">
+                        <i class="glyphicon glyphicon-envelope"></i>
+
+                        <p>{{'HOME.CONTACT' | translate}}</p>
+                    </a>
+                </li>
+                <li>
+                    <language-switcher current="currentLanguage" languages="languages"
+                                       on-language-select="selectLanguage(lang)"></language-switcher>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

@@ -65,6 +65,12 @@ body {
   width: 61px;
   float: left;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 40px;
+    width: 40px;
+    margin-left: 5px
+  }
 }
 
 .filter-bar .navbar-brand p {
@@ -74,11 +80,21 @@ body {
   margin-top: 10px;
   color: @base;
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    margin-top: 0;
+    font-size: 14px;
+  }
 }
 
 .filter-bar .navbar-nav p {
   font-size: 16px;
   margin: 7px 0 0;
+
+  @media (max-width: 768px) {
+    margin-top: 0
+  }
 }
 
 .filter-bar .glyphicon {
@@ -113,12 +129,28 @@ body {
 
 /* Content */
 .site-wrapper {
-  background: url('/assets/img/bg2.jpg') no-repeat fixed 0 -170px;
+  background: url('/assets/img/bg2.jpg') no-repeat fixed 0 0;
   background-size: 100% auto;
-  height: 200px;
+  height: 150px;
   display: block;
   position: relative;
   z-index: 0;
+
+  @media (min-width: 768px) and (max-width: 991px) {
+//    background-position: 0 -150px;
+    background-size: 100% auto
+  }
+
+  @media (min-width: 991px) {
+//    background-position: 0 -80px;
+    background-size: 100% auto
+  }
+
+  @media (min-width: 1280px) {
+//    background-size: 100% auto;
+    background-position: 0 -170px
+  }
+
 }
 
 .main {
@@ -210,8 +242,6 @@ hr {
     margin-right: auto;
     margin-left: auto;
     color: @darkText;
-    box-shadow: @shadow;
-    -webkit-box-shadow: @shadow;
   }
 
   a {

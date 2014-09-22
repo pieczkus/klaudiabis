@@ -6,7 +6,7 @@ angular.module('klaudiabis', ['ui.router', 'pascalprecht.translate', 'ngAnimate'
     .directive("scroll", function ($window) {
         return function (scope, element, attrs) {
             angular.element($window).bind("scroll", function () {
-                if (this.pageYOffset >= 150) {
+                if (this.pageYOffset >= 100) {
                     scope.fillNavigation = true;
                 } else {
                     scope.fillNavigation = false;
