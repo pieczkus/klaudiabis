@@ -59,7 +59,7 @@ body {
 
 .filter-bar .logo {
   border-radius: 50%;
-  border: 1px solid #333;
+  border: 1px solid @base;
   display: block;
   height: 61px;
   width: 61px;
@@ -69,7 +69,13 @@ body {
   @media (max-width: 768px) {
     height: 40px;
     width: 40px;
-    margin-left: 5px
+    margin-left: 5px;
+  }
+}
+
+.filter-bar .navbar-brand {
+  @media (max-width: 768px) {
+    padding: 5px 5px;
   }
 }
 
