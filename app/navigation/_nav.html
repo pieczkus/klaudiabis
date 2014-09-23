@@ -1,5 +1,5 @@
 <div id="navbarMain" class="navbar navbar-default filter-bar navbar-fixed-top" ng-class="{filled:fillNavigation}"
-     role="navigation">
+     role="navigation" ng-controller="languageCtrl">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -21,7 +21,7 @@
                 <li><a href="#"></a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right" ng-controller="languageCtrl">
+            <ul class="nav navbar-nav navbar-right">
                 <li ui-sref-active="current">
                     <a ui-sref="home" class="btn-lg">
                         <i class="glyphicon glyphicon-home"></i>
