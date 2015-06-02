@@ -15,7 +15,7 @@ angular.module('languageModule', ['pascalprecht.translate'])
     .config(function ($translateProvider) {
         $translateProvider
             .useLoader('customLoader', {
-                prefix: '/assets/languages/',
+                prefix: 'assets/languages/',
                 suffix: '.json'
             })
             .preferredLanguage('pl');
@@ -28,7 +28,7 @@ angular.module('languageModule', ['pascalprecht.translate'])
                 languages: '=',
                 onLanguageSelect: '&'
             },
-            templateUrl: '/directives/language-switcher/_language-switcher.html',
+            templateUrl: 'directives/language-switcher/_language-switcher.html',
             replace: true,
             link: function (scope) {
                 scope.isCurrent = function (lang) {
@@ -44,9 +44,9 @@ angular.module('languageModule', ['pascalprecht.translate'])
 
                 scope.getSrc = function (lang) {
                     if (scope.isCurrent(lang)) {
-                        return '/assets/img/' + lang + '-active.png';
+                        return 'assets/img/' + lang + '-active.png';
                     } else {
-                        return '/assets/img/' + lang + '.png';
+                        return 'assets/img/' + lang + '.png';
                     }
                 }
             }

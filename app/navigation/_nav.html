@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand" ui-sref="home">
                 <div class="logo">
-                    <img src="/assets/img/avatar.jpg">
+                    <img src="assets/img/avatar.jpg">
                 </div>
                 <p>
                     PPHU<br/>Klaudia Bis
@@ -30,8 +30,15 @@
                     </a>
                 </li>
                 <li ui-sref-active="current">
-                    <a ui-sref="home.about" class="btn-lg">
+                    <a ui-sref="home.products" class="btn-lg">
                         <i class="glyphicon glyphicon-tag"></i>
+
+                        <p>{{'HOME.PRODUCTS' | translate}}</p>
+                    </a>
+                </li>
+                <li ui-sref-active="current">
+                    <a ui-sref="home.about" class="btn-lg">
+                        <i class="glyphicon glyphicon-comment"></i>
 
                         <p>{{'HOME.ABOUT' | translate}}</p>
                     </a>
