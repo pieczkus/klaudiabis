@@ -1,4 +1,4 @@
-angular.module('klaudiabis', ['ui.router', 'pascalprecht.translate', 'ngAnimate', 'navigationModule', 'languageModule'])
+angular.module('klaudiabis', ['ui.router', 'pascalprecht.translate', 'ngAnimate', 'navigationModule', 'languageModule', 'productsModule'])
     .controller('AppCtrl', function HomeCtrl($scope, $state) {
         $state.go('home');
         $scope.$state = $state;

@@ -31,6 +31,15 @@ angular.module('navigationModule', ['ui.router', 'ngAnimate'])
                     }
                 }
             })
+            .state('home.products', {
+                url: 'products',
+                views: {
+                    "content@home": {
+                        templateUrl: 'app/products/_list.html',
+                        controller: 'productsCtrl'
+                    }
+                }
+            });
     })
     .controller('navigationCtrl', function ($scope, $state) {
 

@@ -1,0 +1,7 @@
+<div id="products" class="products">
+    <a href="#" class="product" ng-repeat="p in products track by p.id">
+        <h2 class="title">{{p.name}}</h2>
+        <div class="loader"></div>
+        <img ng-src="{{p.thumbnail}}" />
+    </a>
+</div>

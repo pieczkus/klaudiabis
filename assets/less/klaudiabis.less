@@ -1,9 +1,8 @@
+@import 'common.less';
 @import 'klaudiabis-animate.less';
+@import 'products.less';
 
-@base: #fff;
-@background: #e5e5e5;
-@darkText: #555555;
-@orange: #ec971f;
+
 @shadow: inset 100px 0px 100px -100px rgba(0, 0, 0, 0.7), inset -100px 0px 100px -100px rgba(0, 0, 0, 0.7);
 
 /* Links */
@@ -128,7 +127,7 @@ body {
 }
 
 .filter-bar.filled {
-  background-color: rgba(236, 151, 31, 0.95);
+  background-color: @orange-opaque;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
   padding-top: 0;
 }

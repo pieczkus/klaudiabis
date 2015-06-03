@@ -1,0 +1,90 @@
+@import 'common.less';
+
+@border: 1px solid rgba(74, 74, 74, 0.075);
+
+.products {
+
+  @media screen and (min-width: 900px) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  position: relative;
+  margin-top: 10px;
+
+  .product {
+    @media screen {
+      @media (min-width: 900px) {
+        width: 50%;
+        border: none;
+
+        &:before {
+          top: 5px;
+          right: 5px;
+          bottom: 5px;
+          left: 5px;
+          border: @border;
+        }
+      }
+
+      @media (min-width: 600px) {
+        padding: 25px 15px 10px;
+      }
+
+      &:before {
+        position: absolute;
+        content: '';
+        border-bottom: @border;
+      }
+
+      &:hover:before {
+        border: 3px solid @orange-opaque;
+      }
+
+    }
+
+    padding: 45px 55px 30px;
+    position: relative;
+    color: @text;
+    background: #fff;
+    min-height: 300px;
+    cursor: pointer;
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+
+    &:hover {
+      color: @darkText;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 1.875em;
+      font-family: "Playfair Display", serif;
+      text-align: center;
+    }
+
+    .loader {
+      height: 1px;
+      width: 40%;
+      margin: 1em auto;
+      position: relative;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+  }
+}
