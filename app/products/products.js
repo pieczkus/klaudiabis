@@ -11,7 +11,7 @@ angular.module('productsModule', ['ui.router', 'ngAnimate'])
                 if (this.productsLoaded()) {
                     return $q.when(self.productList);
                 } else {
-                    return $http.get('assets/products/products.json').then(function (response) {
+                    return $http.get('app/products/products.json').then(function (response) {
                         self.productList = response.data.products;
                         return self.productList;
                     });
@@ -19,9 +19,15 @@ angular.module('productsModule', ['ui.router', 'ngAnimate'])
             },
 
             getProduct: function (productId) {
-                return $http.get('assets/products/' + productId + '.json').then(function (response) {
-                    return response.data.product;
-                });
+
+                if (!this.productsLoaded()) {
+                    return $q.when(null);
+                } else {
+
+                    return $q.when(self.productList.filter(function (elem) {
+                        return elem.id == productId;
+                    }));
+                }
             }
         };
 
@@ -57,7 +63,11 @@ angular.module('productsModule', ['ui.router', 'ngAnimate'])
         $scope.product = null;
 
         ProductsService.getProduct($stateParams.id).then(function (product) {
-            $scope.product = product;
+            if (product && product.length > 0) {
+                $scope.product = product[0];
+            } else {
+                $state.go('home.products');
+            }
         });
 
         // initial image index
@@ -76,11 +86,6 @@ angular.module('productsModule', ['ui.router', 'ngAnimate'])
         // show next image
         $scope.showNext = function () {
             $scope.index = ($scope.index < $scope.product.images.length - 1) ? ++$scope.index : 0;
-        };
-
-        // show a certain image
-        $scope.showPhoto = function (index) {
-            $scope.index = index;
         };
 
     });

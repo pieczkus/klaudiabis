@@ -44,8 +44,7 @@ angular.module('navigationModule', ['ui.router', 'ngAnimate'])
                 url: 'product/:id',
                 views: {
                     "content@home": {
-                        templateUrl: 'app/products/_details.html',
-                        controller: 'productDetailsCtrl'
+                        templateUrl: 'app/products/_details.html'
                     }
                 }
             });
