@@ -39,9 +39,14 @@ angular.module('navigationModule', ['ui.router', 'ngAnimate'])
                         controller: 'productsCtrl'
                     }
                 }
+            })
+            .state('home.product', {
+                url: 'product/:id',
+                views: {
+                    "content@home": {
+                        templateUrl: 'app/products/_details.html',
+                        controller: 'productDetailsCtrl'
+                    }
+                }
             });
-    })
-    .controller('navigationCtrl', function ($scope, $state) {
-
-
     });

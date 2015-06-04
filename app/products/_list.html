@@ -1,7 +1,17 @@
 <div id="products" class="products">
-    <a href="#" class="product" ng-repeat="p in products track by p.id">
-        <h2 class="title">{{p.name}}</h2>
+
+    <!--<header class="top">-->
+        <!--<div class="filter">-->
+            <!--<span>{{'SEARCH' | translate}}</span>-->
+            <!--<input ng-model="searchText" />-->
+        <!--</div>-->
+    <!--</header>-->
+
+    <a href="#" class="product" ng-repeat="product in products track by product.id | filter:searchText" ng-controller="productCtrl"
+       ng-click="productClick()" ng-class="{loading: isLoading()}">
+        <h2 class="title">{{product.name}}</h2>
+
         <div class="loader"></div>
-        <img ng-src="{{p.thumbnail}}" />
+        <img ng-src="{{product.thumbnail}}"/>
     </a>
 </div>

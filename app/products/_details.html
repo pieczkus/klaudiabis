@@ -1,0 +1,8 @@
+<div class="details">
+    <div class="slider">
+        <img ng-repeat="image in product.images" ng-src="{{image}}" class="slide" ng-show="isActive($index)"/>
+
+        <a class="arrow prev" href="#" ng-click="showPrev()"></a>
+        <a class="arrow next" href="#" ng-click="showNext()"></a>
+    </div>
+</div>
