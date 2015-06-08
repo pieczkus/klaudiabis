@@ -3,7 +3,6 @@
 @import 'products.less';
 @import 'details.less';
 
-
 @shadow: inset 100px 0px 100px -100px rgba(0, 0, 0, 0.7), inset -100px 0px 100px -100px rgba(0, 0, 0, 0.7);
 
 /* Links */
@@ -147,17 +146,14 @@ body {
   z-index: 0;
 
   @media (min-width: 768px) and (max-width: 991px) {
-//    background-position: 0 -150px;
     background-size: 100% auto
   }
 
   @media (min-width: 991px) {
-//    background-position: 0 -80px;
     background-size: 100% auto
   }
 
   @media (min-width: 1280px) {
-//    background-size: 100% auto;
     background-position: 0 -170px
   }
 
@@ -178,14 +174,19 @@ body {
 }
 
 .container {
-  @media (min-width: 1200px) {
-    width: 1170px;
+  @media (max-width: 1200px) {
+    width: 950px;
   }
-  @media (min-width: 992px) {
-    width: 970px;
-  }
-  @media (min-width: 768px) {
+  @media (max-width: 900px) {
     width: 750px;
+  }
+  @media (max-width: 600px) {
+    width: 550px;
+    padding: 0;
+  }
+  @media (max-width: 420px) {
+    width: 300px;
+    padding: 0;
   }
   margin-right: auto;
   margin-left: auto;

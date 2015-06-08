@@ -3,6 +3,7 @@
 .back {
   color: @text;
   float: right;
+  padding: 0;
 
   &:hover {
     color: @orange;
@@ -11,10 +12,25 @@
 
 .slider {
 
-  height: 480px;
+  height: 1024px;
+  width: 768px;
   margin: 20px auto;
   position: relative;
-  width: 425px;
+
+  @media (max-width: 900px) {
+    height: 800px;
+    width: 600px;
+  }
+
+  @media (max-width: 600px) {
+    height: 640px;
+    width: 480px;
+  }
+
+  @media (max-width: 400px) {
+    height: 320px;
+    width: 240px;
+  }
 
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
@@ -32,6 +48,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
   }
 
   .arrow {

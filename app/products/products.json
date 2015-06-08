@@ -4,38 +4,43 @@
             "id": "88502a66-e150-4d8a-8b92-a1256898b03c",
             "name": "Ceratka",
             "year": "2014",
-            "thumbnail": "assets/img/sample/ceratka-thumb.png",
-            "images": ["assets/img/sample/ceratka1.png", "assets/img/sample/ceratka2.png", "assets/img/sample/ceratka3.png"]
+            "thumbnail": "assets/img/sample/ceratka1.jpg",
+            "images": ["assets/img/sample/ceratka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
         },
         {
             "id": "cdf9d71f-a552-4df9-a201-34ff812370c7",
             "name": "Plecionka",
             "year": "2014",
-            "thumbnail": "assets/img/sample/plecionka-thumb.png"
+            "thumbnail": "assets/img/sample/plecionka1.jpg",
+            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
         },
         {
             "id": "6aea4fbc-e3bc-4063-ae71-60f390e7afdb",
             "name": "Kulfon",
             "year": "2014",
-            "thumbnail": "assets/img/sample/sweter1-thumb.jpg"
+            "thumbnail": "assets/img/sample/ceratka1.jpg",
+            "images": ["assets/img/sample/ceratka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
         },
         {
             "id": "701fad08-f428-4834-9e59-fbea52e9d1a7",
             "name": "Monika",
             "year": "2014",
-            "thumbnail": "assets/img/sample/sweter1-thumb.jpg"
+            "thumbnail": "assets/img/sample/plecionka1.jpg",
+            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
         },
         {
             "id": "770ee91e-66e8-4ac3-9f3b-87de34603533",
             "name": "Alfonso",
             "year": "2014",
-            "thumbnail": "assets/img/sample/sweter1-thumb.jpg"
+            "thumbnail": "assets/img/sample/plecionka1.jpg",
+            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
         },
         {
             "id": "8f42132c-30e3-4fdb-83cb-70762556ebd0",
             "name": "Romano",
             "year": "2014",
-            "thumbnail": "assets/img/sample/sweter1-thumb.jpg"
+            "thumbnail": "assets/img/sample/plecionka1.jpg",
+            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
         }
     ]
 }
