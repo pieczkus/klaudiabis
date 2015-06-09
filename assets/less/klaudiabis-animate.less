@@ -34,6 +34,10 @@
   z-index: 10;
 }
 
+.slider {
+  .animated
+}
+
 .tempAbs {
   .transition(all 0.1s);
   display: none;
@@ -71,6 +75,15 @@
 /* enter and leave while routing */
 #content.ng-enter {
   .fadeIn;
+}
+
+
+.slider.ng-hide-add {
+  .fadeInDownBig
+}
+
+.slider.ng-hide-remove {
+  .fadeOutDownBig
 }
 
 
