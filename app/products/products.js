@@ -32,8 +32,9 @@ angular.module('productsModule', ['ui.router', 'ngAnimate'])
         };
 
     })
-    .controller('productsCtrl', function ($scope, $state, ProductsService) {
+    .controller('productsCtrl', function ($scope, $state, ProductsService, Analytics) {
 
+        Analytics.trackPage('/products');
         $scope.products = [];
 
         ProductsService.getProducts().then(function (productList) {
@@ -58,13 +59,14 @@ angular.module('productsModule', ['ui.router', 'ngAnimate'])
             return $scope.loading;
         };
     })
-    .controller("productDetailsCtrl", function ($scope, $state, $stateParams, ProductsService) {
+    .controller("productDetailsCtrl", function ($scope, $state, $stateParams, ProductsService, Analytics) {
 
         $scope.product = null;
 
         ProductsService.getProduct($stateParams.id).then(function (product) {
             if (product && product.length > 0) {
                 $scope.product = product[0];
+                Analytics.trackPage('/product/' + $scope.product.name);
             } else {
                 $state.go('home.products');
             }
