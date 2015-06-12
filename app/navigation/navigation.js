@@ -19,7 +19,8 @@ angular.module('navigationModule', ['ui.router', 'ngAnimate'])
                 url: 'contact',
                 views: {
                     "content@home": {
-                        templateUrl: 'app/contact/_contact.html'
+                        templateUrl: 'app/contact/_contact.html',
+                        controller: 'contactCtrl'
                     }
                 }
             })

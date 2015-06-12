@@ -1,4 +1,4 @@
-angular.module('klaudiabis', ['ui.router', 'pascalprecht.translate', 'ngAnimate', 'navigationModule', 'languageModule', 'productsModule', 'angular-google-analytics'])
+angular.module('klaudiabis', ['ui.router', 'pascalprecht.translate', 'ngAnimate', 'navigationModule', 'languageModule', 'productsModule', 'contactModule', 'angular-google-analytics'])
     .config(function (AnalyticsProvider) {
         AnalyticsProvider.setAccount('UA-54287525-1');
         AnalyticsProvider.trackPages(false);
