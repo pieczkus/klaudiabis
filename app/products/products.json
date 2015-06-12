@@ -5,42 +5,70 @@
             "name": "Ceratka",
             "year": "2014",
             "thumbnail": "assets/img/sample/ceratka1.jpg",
-            "images": ["assets/img/sample/ceratka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
+            "images": ["assets/img/sample/ceratka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg", "assets/img/sample/ceratka4.jpg"]
         },
         {
             "id": "cdf9d71f-a552-4df9-a201-34ff812370c7",
             "name": "Plecionka",
             "year": "2014",
             "thumbnail": "assets/img/sample/plecionka1.jpg",
-            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
+            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/plecionka2.jpg", "assets/img/sample/plecionka3.jpg"]
         },
         {
             "id": "6aea4fbc-e3bc-4063-ae71-60f390e7afdb",
-            "name": "Kulfon",
+            "name": "Armania",
             "year": "2014",
-            "thumbnail": "assets/img/sample/ceratka1.jpg",
-            "images": ["assets/img/sample/ceratka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
+            "thumbnail": "assets/img/sample/armania1.jpg",
+            "images": ["assets/img/sample/armania1.jpg", "assets/img/sample/armania2.jpg", "assets/img/sample/armania3.jpg"]
         },
         {
             "id": "701fad08-f428-4834-9e59-fbea52e9d1a7",
-            "name": "Monika",
+            "name": "Dziurka",
             "year": "2014",
-            "thumbnail": "assets/img/sample/plecionka1.jpg",
-            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
+            "thumbnail": "assets/img/sample/dziurka1.jpg",
+            "images": ["assets/img/sample/dziurka1.jpg", "assets/img/sample/dziurka2.jpg", "assets/img/sample/dziurka3.jpg"]
         },
         {
             "id": "770ee91e-66e8-4ac3-9f3b-87de34603533",
-            "name": "Alfonso",
+            "name": "Gucio",
             "year": "2014",
-            "thumbnail": "assets/img/sample/plecionka1.jpg",
-            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
+            "thumbnail": "assets/img/sample/gucio1.jpg",
+            "images": ["assets/img/sample/gucio1.jpg", "assets/img/sample/gucio2.jpg", "assets/img/sample/gucio3.jpg"]
         },
         {
             "id": "8f42132c-30e3-4fdb-83cb-70762556ebd0",
-            "name": "Romano",
+            "name": "Karmen",
             "year": "2014",
-            "thumbnail": "assets/img/sample/plecionka1.jpg",
-            "images": ["assets/img/sample/plecionka1.jpg", "assets/img/sample/ceratka2.jpg", "assets/img/sample/ceratka3.jpg"]
+            "thumbnail": "assets/img/sample/karmen1.jpg",
+            "images": ["assets/img/sample/karmen1.jpg", "assets/img/sample/karmen2.jpg", "assets/img/sample/karmen3.jpg"]
+        },
+        {
+            "id": "2765921a-3a8f-47df-a80c-fd43097d24b6",
+            "name": "Lódka",
+            "year": "2014",
+            "thumbnail": "assets/img/sample/lodka1.jpg",
+            "images": ["assets/img/sample/lodka1.jpg", "assets/img/sample/lodka2.jpg", "assets/img/sample/lodka3.jpg"]
+        },
+        {
+            "id": "843d258e-16d1-4c3b-bf57-eb70be377a2f",
+            "name": "Trójka",
+            "year": "2014",
+            "thumbnail": "assets/img/sample/trojka1.jpg",
+            "images": ["assets/img/sample/trojka1.jpg", "assets/img/sample/trojka1.jpg", "assets/img/sample/trojka1.jpg"]
+        },
+        {
+            "id": "5d2d8311-48f6-46ee-b4ca-7914b5c419ec",
+            "name": "Trzy Guziki",
+            "year": "2014",
+            "thumbnail": "assets/img/sample/trzy_guziki1.jpg",
+            "images": ["assets/img/sample/trzy_guziki1.jpg", "assets/img/sample/trzy_guziki2.jpg", "assets/img/sample/trzy_guziki3.jpg"]
+        },
+        {
+            "id": "285891af-d919-4226-91f4-aca3d9548028",
+            "name": "Zośka",
+            "year": "2014",
+            "thumbnail": "assets/img/sample/zoska1.jpg",
+            "images": ["assets/img/sample/zoska1.jpg", "assets/img/sample/zoska2.jpg", "assets/img/sample/zoska3.jpg"]
         }
     ]
 }

@@ -135,21 +135,27 @@
     img {
       margin-left: auto;
       margin-right: auto;
-      height: 85%;
-      width: 85%;
+      height: 512px;
+      width: 384px;
 
-      @media (max-width: 900px) {
-        width: 65%;
+      @media (max-width: 1200px) {
+        width: 360px;
+        height: 480px;
+      }
+
+      @media (max-width: 901px) {
+        width: 384px;
+        height: 512px;
       }
 
       @media (max-width: 600px) {
-        width: 65%;
-        height: 80%;
+        width: 285px;
+        height: 380px;
       }
 
-      @media (max-width: 420px) {
-        width: 80%;
-        height: 60%;
+      @media (max-width: 400px) {
+        width: 225px;
+        height: 300px;
       }
     }
   }
