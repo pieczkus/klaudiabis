@@ -26,6 +26,7 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-contrib" % akkaV intransitive(),
     "com.typesafe.akka" %% "akka-persistence-experimental" % akkaV intransitive(),
     "com.github.krasserm" %% "akka-persistence-cassandra" % "0.3.8" intransitive(),
+    "org.iq80.leveldb" % "leveldb" % "0.7",
     "org.scalatest" %% "scalatest" % scalaTestV % "test"
   )
 }

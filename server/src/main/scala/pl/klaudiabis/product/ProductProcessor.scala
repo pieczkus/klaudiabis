@@ -13,7 +13,7 @@ object ProductProcessor {
 
 }
 
-class ProductProcessor extends PersistentActor with AutoPassivation {
+class ProductProcessor(productView: ActorRef) extends PersistentActor with AutoPassivation {
 
   override def persistenceId: String = "product-processor"
 
