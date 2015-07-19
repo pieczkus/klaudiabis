@@ -1,44 +1,48 @@
 package pl.klaudiabis.main
 
 import akka.actor._
+import akka.http.scaladsl.Http
 import akka.persistence.journal.leveldb.{SharedLeveldbJournal, SharedLeveldbStore}
+import akka.stream.ActorMaterializer
 import akka.util.Timeout
-import com.typesafe.config.{ConfigFactory, Config}
-
-import collection.JavaConversions._
+import com.typesafe.config.{Config, ConfigFactory}
 
 object LocalApp extends App with Monolith {
 
+  val actorSystemName = "KlaudiaBis"
   val role = "allInOne"
+  val port = 2551
+
+  implicit val system = ActorSystem(actorSystemName, config)
+  implicit val executor = system.dispatcher
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   /**
    * Implementations must return the entire ActorSystem configuraiton
    * @return the configuration
    */
-  override def config: Config = {
+  def config: Config = {
     val clusterShardingConfig = ConfigFactory.parseString(s"akka.contrib.cluster.sharding.role=$role")
     val clusterRoleConfig = ConfigFactory.parseString(s"akka.cluster.roles=[$role]")
+    val clusterPort = ConfigFactory.parseString(s"akka.remote.netty.tcp.port=$port")
 
     clusterShardingConfig
       .withFallback(clusterRoleConfig)
+      .withFallback(clusterPort)
       .withFallback(ConfigFactory.load("main.conf"))
   }
 
   /**
    * Implementations can perform any logic required to start or join a journal
-   * @param system the ActorSystem that needs the journal starting or looking up
-   * @param startStore ``true`` if this is the first time this function is being called
    * @param path the path for the actor that represents the journal
    */
-  override def journalStartUp(system: ActorSystem, startStore: Boolean, path: ActorPath): Unit = {
+  def journalStartUp(path: ActorPath): Unit = {
     import akka.pattern.ask
-    import scala.concurrent.duration._
-    import system.dispatcher
+
+import scala.concurrent.duration._
     // Start the shared journal one one node (don't crash this SPOF)
     // This will not be needed with a distributed journal
-    if (startStore) {
-      system.actorOf(Props[SharedLeveldbStore], "store")
-    }
+    system.actorOf(Props[SharedLeveldbStore], "store")
 
     // register the shared journal
     implicit val timeout = Timeout(15.seconds)
@@ -57,7 +61,7 @@ object LocalApp extends App with Monolith {
     }
   }
 
-  val ports = config.getIntList("akka.cluster.jvm-ports").toList
-  ports.foreach(port => actorSystemStartUp(port, 10000 + port))
+  journalStartUp(ActorPath.fromString(s"akka.tcp://$actorSystemName@127.0.0.1:$port/user/store"))
+  Http().bindAndHandle(route, "localhost", 10000 + port)
 
 }

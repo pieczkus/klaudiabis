@@ -1,6 +1,6 @@
 package pl.klaudiabis.common
 
-import akka.actor.{ReceiveTimeout, Actor, ActorLogging}
+import akka.actor.{Actor, ActorLogging, ReceiveTimeout}
 
 trait AutoPassivation extends ActorLogging {
   this: Actor =>
