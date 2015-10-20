@@ -1,11 +1,12 @@
 package pl.klaudiabis.common
 
 import akka.actor.{Actor, ActorLogging, ReceiveTimeout}
+import akka.cluster.sharding.ShardRegion
 
 trait AutoPassivation extends ActorLogging {
   this: Actor =>
 
-  import akka.contrib.pattern.ShardRegion.Passivate
+  import akka.cluster.sharding.ShardRegion.Passivate
 
   private val passivationReceive: Receive = {
     case ReceiveTimeout ⇒

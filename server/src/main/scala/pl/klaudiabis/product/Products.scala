@@ -2,13 +2,7 @@ package pl.klaudiabis.product
 
 import pl.klaudiabis.common.ProductId
 
-case class ProductDetails(summary: ProductSummary, pictures: Pictures) {
-
-  def withSummary(summary: ProductSummary): ProductDetails = copy(summary = summary)
-
-}
-
-case class ProductSummary(productId: Option[ProductId], name: String, year: Int) {
+case class ProductSummary(productId: Option[ProductId], name: String, year: Int, thumbnailUrl: String) {
 
   def withId(productId: ProductId) = copy(productId = Some(productId))
 

@@ -1,10 +1,11 @@
 package pl.klaudiabis.product
 
 import akka.actor.{ActorRef, Props}
-import akka.contrib.pattern.DistributedPubSubExtension
-import akka.contrib.pattern.DistributedPubSubMediator.{Publish, Subscribe}
+import akka.cluster.pubsub.DistributedPubSubMediator.{Publish, Subscribe}
+import akka.cluster.pubsub.{DistributedPubSub, DistributedPubSubMediator}
 import akka.persistence.{PersistentActor, SnapshotOffer}
 import pl.klaudiabis.common.{AutoPassivation, ProductId}
+import pl.klaudiabis.product.Product.AddProduct
 import pl.klaudiabis.product.ProductProcessor._
 
 import scalaz.\/
@@ -21,10 +22,9 @@ object ProductProcessor {
 
   case class NewProductAdded(product: ProductSummary)
 
-  case object GetProductsQuery
+  case object GetAllProducts
 
   case object GetYearsQuery
-
 
 }
 
@@ -33,7 +33,7 @@ class ProductProcessor(product: ActorRef) extends PersistentActor with AutoPassi
   override def persistenceId: String = "product-processor"
 
   private var products = Products.empty
-  private val mediator = DistributedPubSubExtension(context.system).mediator
+  private val mediator = DistributedPubSub(context.system).mediator
   private val topic = "products"
   mediator ! Subscribe(topic, self)
 
@@ -49,7 +49,7 @@ class ProductProcessor(product: ActorRef) extends PersistentActor with AutoPassi
 
   override def receiveCommand: Receive = withPassivation {
     case AddProductCommand(pc) =>
-      if(productExists(pc.name)) {
+      if (productExists(pc.name)) {
         val message = s"Product with ${pc.name} already exists"
         log.warning(message)
         sender() ! \/.left(message)
@@ -57,7 +57,7 @@ class ProductProcessor(product: ActorRef) extends PersistentActor with AutoPassi
         val productId = ProductId.randomId()
         val productSummary = pc.withId(productId)
         persist(ProductAddedEvent(productId, productSummary)) { productAdded =>
-          product ! productAdded
+          product ! AddProduct(productAdded.productId, productAdded.product)
           products = products.withNewProduct(productSummary)
           saveSnapshot(products)
 
@@ -66,12 +66,12 @@ class ProductProcessor(product: ActorRef) extends PersistentActor with AutoPassi
       }
 
     case NewProductAdded(productSummary) =>
-      if(sender() != self) {
+      if (sender() != self) {
         log.debug(s"NewProductAdded => $productSummary")
         products = products.withNewProduct(productSummary)
       }
 
-    case GetProductsQuery =>
+    case GetAllProducts =>
       sender() ! products.products
 
     case GetYearsQuery =>

@@ -2,12 +2,13 @@ package pl.klaudiabis.product
 
 import akka.actor.{ActorRef, ActorSystem}
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import akka.http.scaladsl.model.{StatusCodes, StatusCode}
+import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Route
 import akka.stream.Materializer
 import pl.klaudiabis.common.{ProductId, Timeouts}
-import pl.klaudiabis.product.Product.GetProductQuery
-import pl.klaudiabis.product.ProductProcessor.{GetProductsQuery, AddProductCommand}
+import pl.klaudiabis.product.Product._
+import pl.klaudiabis.product.ProductProcessor.{AddProductCommand, GetAllProducts}
 
 import scala.concurrent.ExecutionContextExecutor
 
@@ -21,9 +22,9 @@ trait ProductService extends SprayJsonSupport with ProductProtocols {
   implicit val materializer: Materializer
 
   import akka.pattern.ask
-  import Timeouts.defaults._
+  import pl.klaudiabis.common.Timeouts.defaults._
 
-  def productRoute(productProcessor: ActorRef, product: ActorRef) = {
+  def productRoute(productProcessor: ActorRef, product: ActorRef): Route = {
     logRequest("product-microservice") {
       pathPrefix("product") {
         (post & entity(as[ProductSummary])) { productSummary =>
@@ -31,18 +32,25 @@ trait ProductService extends SprayJsonSupport with ProductProtocols {
           complete {
             StatusCodes.OK
           }
-        } ~
-          (get & path(JavaUUID)) { productId =>
-            complete {
-              (product ? GetProductQuery(ProductId(productId.toString))).mapTo[ProductDetails]
-            }
-          } ~ get {
+        } ~ (get & path(JavaUUID / "pictures")) { productId =>
           complete {
-            (productProcessor ? GetProductsQuery).mapTo[List[ProductSummary]]
+            (product ? GetProductPictures(ProductId(productId.toString))).mapTo[List[String]]
+          }
+        } ~ (get & path(JavaUUID)) { productId =>
+          complete {
+            (product ? GetProduct(ProductId(productId.toString))).mapTo[ProductSummary]
+          }
+        } ~ get {
+          complete {
+            (productProcessor ? GetAllProducts).mapTo[List[ProductSummary]]
+          }
+        } ~ (post & path(JavaUUID / "picture") & entity(as[List[String]])) { (productId, pictureUrls) =>
+          pictureUrls.foreach(pictureUrl => product ! AddPicture(ProductId(productId.toString), pictureUrl))
+          complete {
+            StatusCodes.OK
           }
         }
       }
     }
   }
-
 }

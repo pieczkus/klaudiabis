@@ -1,7 +1,7 @@
 package pl.klaudiabis.product
 
 import akka.actor.{ActorRef, ActorSystem}
-import akka.contrib.pattern.ClusterSharding
+import akka.cluster.sharding.{ClusterSharding, ClusterShardingSettings}
 
 case class ProductBoot(productProcessor: ActorRef, product: ActorRef) {
 
@@ -10,14 +10,15 @@ case class ProductBoot(productProcessor: ActorRef, product: ActorRef) {
 object ProductBoot {
 
   def boot(implicit system: ActorSystem): ProductBoot = {
-    val productView = ClusterSharding(system).start(
-      typeName = Product.shardName,
-      entryProps = Some(Product.props),
-      idExtractor = Product.idExtractor,
-      shardResolver = Product.shardResolver)
+    val product = ClusterSharding(system).start(
+            typeName = Product.shardName,
+            entityProps = Product.props,
+            settings = ClusterShardingSettings(system),
+            extractEntityId = Product.idExtractor,
+            extractShardId = Product.shardResolver)
 
-    val productProcessor = system.actorOf(ProductProcessor.props(productView))
+    val productProcessor = system.actorOf(ProductProcessor.props(product))
 
-    ProductBoot(productProcessor, productView)
+    ProductBoot(productProcessor, product)
   }
 }
