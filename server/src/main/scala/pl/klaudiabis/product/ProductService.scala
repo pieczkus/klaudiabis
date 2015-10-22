@@ -7,6 +7,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.stream.Materializer
 import pl.klaudiabis.common.{ProductId, Timeouts}
+import pl.klaudiabis.metrics.ProductViewSummary.ViewProductCommand
 import pl.klaudiabis.product.Product._
 import pl.klaudiabis.product.ProductProcessor.{AddProductCommand, GetAllProducts}
 
@@ -24,7 +25,7 @@ trait ProductService extends SprayJsonSupport with ProductProtocols {
   import akka.pattern.ask
   import pl.klaudiabis.common.Timeouts.defaults._
 
-  def productRoute(productProcessor: ActorRef, product: ActorRef): Route = {
+  def productRoute(productProcessor: ActorRef, product: ActorRef, metricsSummary: ActorRef): Route = {
     logRequest("product-microservice") {
       pathPrefix("product") {
         (post & entity(as[ProductSummary])) { productSummary =>
@@ -34,9 +35,10 @@ trait ProductService extends SprayJsonSupport with ProductProtocols {
           }
         } ~ (get & path(JavaUUID / "pictures")) { productId =>
           complete {
-            (product ? GetProductPictures(ProductId(productId.toString))).mapTo[List[String]]
+            (product ? GetProductPictures(ProductId(productId.toString))).mapTo[Map[String, String]]
           }
         } ~ (get & path(JavaUUID)) { productId =>
+          metricsSummary ! ViewProductCommand(ProductId(productId.toString))
           complete {
             (product ? GetProduct(ProductId(productId.toString))).mapTo[ProductSummary]
           }

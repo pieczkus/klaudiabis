@@ -1,9 +1,12 @@
 package pl.klaudiabis.product
 
 import akka.actor.Props
+import akka.cluster.pubsub.DistributedPubSub
+import akka.cluster.pubsub.DistributedPubSubMediator.Publish
 import akka.cluster.sharding.ShardRegion
 import akka.persistence.{PersistentActor, SnapshotOffer}
 import pl.klaudiabis.common.{AutoPassivation, ProductId}
+import pl.klaudiabis.metrics.ProductViewSummary.ViewProductCommand
 import pl.klaudiabis.product.Product._
 
 object Product {
@@ -50,9 +53,7 @@ object Product {
 
 class Product extends PersistentActor with AutoPassivation {
 
-  private val productId = ProductId(self.path.name)
-
-  override def persistenceId: String = s"product-${productId.toString}"
+  override def persistenceId: String = "product-" + self.path.parent.name + "-" + self.path.name
 
   private var product = State(null, Pictures.empty)
 
@@ -67,7 +68,8 @@ class Product extends PersistentActor with AutoPassivation {
   }
 
   private def exists: Receive = withPassivation {
-    case GetProduct(_) => sender() ! product.summary
+    case GetProduct(pId) =>
+      sender() ! product.summary
 
     case AddPicture(_, picture) =>
       persist(PictureAdded(picture)) { pa =>
@@ -85,6 +87,7 @@ class Product extends PersistentActor with AutoPassivation {
     case evt: ProductEvent =>
       log.info("Recover product huhuhuhuhu")
       this.product = product.updated(evt)
+    case _ => log.error("kurfa prod")
   }
 
   override def receiveCommand: Receive = notExists

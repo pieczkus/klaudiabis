@@ -3,6 +3,11 @@ package pl.klaudiabis.common
 import java.util.UUID
 
 case class ProductId(id: String) {
+
+  def metricId = {
+    UUID.fromString(id).getLeastSignificantBits.toString
+  }
+
   override def toString: String = id
 }
 

@@ -17,6 +17,16 @@ object LocalApp extends App with Monolith {
   implicit val executor = system.dispatcher
   implicit val materializer: ActorMaterializer = ActorMaterializer()
 
+  def startup(ports: Seq[String]): Unit = {
+    ports.foreach {
+      p =>
+        if (p.equals("2551")) {
+          journalStartUp(ActorPath.fromString(s"akka.tcp://$actorSystemName@127.0.0.1:$p/user/store"))
+        }
+        Http().bindAndHandle(route, "localhost", 10000 + p.toInt)
+    }
+  }
+
   /**
    * Implementations must return the entire ActorSystem configuraiton
    * @return the configuration
@@ -39,7 +49,7 @@ object LocalApp extends App with Monolith {
   def journalStartUp(path: ActorPath): Unit = {
     import akka.pattern.ask
 
-import scala.concurrent.duration._
+    import scala.concurrent.duration._
     // Start the shared journal one one node (don't crash this SPOF)
     // This will not be needed with a distributed journal
     system.actorOf(Props[SharedLeveldbStore], "store")
@@ -61,7 +71,11 @@ import scala.concurrent.duration._
     }
   }
 
-  journalStartUp(ActorPath.fromString(s"akka.tcp://$actorSystemName@127.0.0.1:$port/user/store"))
-  Http().bindAndHandle(route, "localhost", 10000 + port)
+  if (args.isEmpty) {
+    startup(Seq("2551", "2552"))
+  }
+  else {
+    startup(args)
+  }
 
 }
