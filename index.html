@@ -6,47 +6,218 @@
     <meta content="dziewiarstwo, maszynowe, swetry, zakiety, odziez damska, odziez" name="keywords">
     <title>Klaudia-Bis, Dziewiarstwo maszynowe, klaudiabis</title>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/vendor/angular/angular-material.min.css">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="assets/css/klaudiabis.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
     <link rel="stylesheet" type="text/css" href="assets/css/klaudiabis.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-    <meta name="viewport" content="initial-scale=1"/>
+
 </head>
 <body layout="column" ng-controller="AppCtrl">
-<md-toolbar layout="row">
-    <div class="md-toolbar-tools">
-        <md-button ng-click="toggleSidenav('left')" class="md-icon-button" hide-gt-sm>
-            <ng-md-icon class="ng-scope" icon="menu" size="36" style="fill: white"></ng-md-icon>
-        </md-button>
-        <h1>PPHU<br/>Klaudia Bis</h1>
+<div class="navbar-fixed">
+    <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="#" class="brand-logo orange-text text-darken-1 light">PPHU Klaudia Bis</a>
+            <ul class="right hide-on-med-and-down">
+                <li ng-repeat="item in menu"><a href="{{item.link}}" class="orange-text text-darken-1">{{item.title | translate}}</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li ng-repeat="item in menu"><a href="{{item.link}}" class="orange-text text-darken-1">{{item.title | translate}}</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" data-sidenav="left" class="button-collapse orange-text text-darken-1"><i
+                    class="material-icons">menu</i></a>
+        </div>
+    </nav>
+</div>
+
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot scrollspy" id="home">
+        <div class="container">
+            <br><br>
+
+            <h1 class="header center grey-text text-lighten-2">{{'COVER' | translate}}</h1>
+
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'COVER_TEXT' | translate}} {{'COOPERATION' | translate}}</h5>
+            </div>
+            <div class="row center">
+                <a href="http://materializecss.com/getting-started.html" id="download-button"
+                   class="btn-large waves-effect waves-light orange darken-1">{{'MORE' | translate}}</a>
+            </div>
+            <br><br>
+
+        </div>
     </div>
-</md-toolbar>
-<div layout="row" flex>
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-        <md-content layout-padding ui-view="navigation">
+    <div class="parallax"><img src="assets/img/bg2.jpg" alt="Unsplashed background img 1"></div>
+</div>
 
-        </md-content>
-    </md-sidenav>
-    <div layout="column" flex id="content">
-        <md-content layout="column" flex class="md-padding" ui-view="content">
 
-        </md-content>
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text text-darken-1"><i class="material-icons medium">flash_on</i></h2>
+                    <h5 class="center">Speeds up development</h5>
+
+                    <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom
+                        components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text text-darken-1"><i class="material-icons medium">group</i></h2>
+                    <h5 class="center">User Experience Focused</h5>
+
+                    <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that
+                        incorporates components and animations that provide more feedback to users. Additionally, a single underlying
+                        responsive system across all platforms allow for a more unified user experience.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text text-darken-1"><i class="material-icons medium">settings</i></h2>
+                    <h5 class="center">Easy to work with</h5>
+
+                    <p class="light">We have provided detailed documentation as well as specific code examples to help new users get
+                        started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
 
-<script src="assets/js/vendor/angular/angular.min.js"></script>
-<script src="assets/js/vendor/angular/angular-animate.min.js"></script>
-<script src="assets/js/vendor/angular/angular-aria.min.js"></script>
-<script src="assets/js/vendor/angular/angular-translate.min.js"></script>
-<script src="assets/js/vendor/angular/angular-ui-router.min.js"></script>
-<script src="assets/js/vendor/angular/angular-material.min.js"></script>
-<script src="assets/js/vendor/angular/angular-material-icons.min.js"></script>
+<div class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container scrollspy" id="about">
+            <div class="row center">
+                <h3 class="header grey-text text-lighten-2">{{'ABOUT_HEAD' | translate}}</h3>
+            </div>
+            <div class="center row">
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'ABOUT_PROFILE' | translate}}<br/>{{'ABOUT_MACHINES' |
+                    translate}}</h5>
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'ABOUT_COOPERATION' | translate}}</h5>
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'COOPERATION' | translate}}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="assets/img/bg3.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
+<div class="container">
+    <div class="section scrollspy" id="products">
+
+        <div class="row">
+            <div class="col s12 center brown-text">
+                <h4>{{'HOME.PRODUCTS' | translate}}</h4>
+
+                <div ng-repeat="pair in topProductsPairs">
+                    <div class="center row">
+                        <div class="col s6" ng-repeat="prod in pair">
+                            <div class="material-placeholder">
+                                <img class="materialboxed responsive-img intialized"
+                                     data-caption="Description about the work or project"
+                                     src="{{prod.thumbnailUrl}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="waves-effect waves-light btn orange darken-1">{{'VIEW_MORE' | translate}}</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="section scrollspy" id="contact">
+        <h4>{{'HOME.CONTACT' | translate}}</h4>
+
+        <div class="row">
+
+            <form class="col s8">
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" type="text">
+                        <label for="name">{{'YOUR_NAME' | translate}}</label>
+                    </div>
+
+
+                    <div class="input-field col s6">
+                        <input id="email" type="email">
+                        <label for="email" >{{'YOUR_EMAIL' | translate}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="message-sub" type="text">
+                        <label for="message-sub" >{{'MESSAGE_SUBJECT' | translate}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="text_area" class="materialize-textarea"></textarea>
+                        <label for="text_area">{{'YOUR_MESSAGE' | translate}}</label>
+                    </div>
+                </div>
+
+
+                <div>
+                    <a class="waves-effect waves-light btn orange darken-1">{{'SEND_MESSAGE' | translate}}<i class="mdi-content-send right"></i></a>
+                </div>
+            </form>
+
+            <div class="col center s4 m4">
+                <h5>PPHU Klaudia Bis</h5>
+                <h6>Sosnowa 28</h6>
+                <h6>42-360 Poraj</h6>
+
+                <h5><i class="material-icons orange-text darken-1">phone</i>+48 537 520 800</h5>
+                <h5><i class="material-icons orange-text darken-1">email</i>kontakt@klaudiabis.pl</h5>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<footer class="page-footer orange darken-2">
+    <div class="footer-copyright">
+        <div class="container">
+            Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        </div>
+    </div>
+</footer>
+
+
+<script src="assets/js/jquery-2.1.4.min.js"></script>
+<script src="assets/js/angular.js"></script>
+<script src="assets/js/angular-animate.min.js"></script>
+<script src="assets/js/angular-aria.min.js"></script>
+<script src="assets/js/angular-translate.min.js"></script>
+<script src="assets/js/materialize.min.js"></script>
+<script src="assets/js/angular-materialize.js"></script>
+<script src="assets/js/para.js"></script>
 <!-- app -->
 <script src="app/app.js"></script>
-<script src="app/navigation/navigation.js"></script>
+<!--<script src="app/navigation/navigation.js"></script>-->
 <script src="app/language/language.js"></script>
-<script src="app/products/products.js"></script>
-<script src="app/contact/contact.js"></script>
-<script src="assets/js/vendor/aga.js"></script>
+<!--<script src="app/products/products.js"></script>-->
+<!--<script src="app/contact/contact.js"></script>-->
+<!--<script src="assets/js/vendor/aga.js"></script>-->
+
 </body>
 </html>

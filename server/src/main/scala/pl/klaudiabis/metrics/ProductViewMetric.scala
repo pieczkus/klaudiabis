@@ -54,7 +54,6 @@ class ProductViewMetric extends PersistentActor with AutoPassivation {
       state = snapshot
     case evt: ProductMetricEvent =>
       this.state = state.updated(evt)
-    case _ => log.error("kurfa")
   }
 
   override def receiveCommand: Receive = {

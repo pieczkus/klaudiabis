@@ -1,32 +1,63 @@
-angular.module('klaudiabis', ['ngMaterial', 'ngMdIcons', 'ui.router', 'pascalprecht.translate', 'ngAnimate', 'navigationModule', 'languageModule', 'productsModule', 'contactModule', 'angular-google-analytics'])
-    .config(function (AnalyticsProvider, $mdThemingProvider) {
-        AnalyticsProvider.setAccount('UA-54287525-1');
-        AnalyticsProvider.trackPages(false);
-        AnalyticsProvider.useAnalytics(true);
-
-        $mdThemingProvider.theme('default')
-            .primaryPalette('orange')
-            .accentPalette('brown');
-    })
-    .controller('AppCtrl', function HomeCtrl($scope, $mdBottomSheet, $mdSidenav, $mdDialog) {
+angular.module('klaudiabis', ['ui.materialize', 'pascalprecht.translate', 'languageModule'])
+    .controller('AppCtrl', function HomeCtrl($scope) {
 //        $state.go('home');
 //        $scope.$state = $state;
 //        Analytics.trackPage('/');
-        $scope.toggleSidenav = function(menuId) {
-            $mdSidenav(menuId).toggle();
-          };
 
+        $scope.menu = [
+            {
+                link: '#products',
+                title: 'HOME.PRODUCTS',
+                icon: 'dashboard'
+            },
+            {
+                link: '#about',
+                title: 'HOME.ABOUT',
+                icon: 'group'
+            },
+            {
+                link: '#contact',
+                title: 'HOME.CONTACT',
+                icon: 'message'
+            }
+        ];
+        $scope.admin = [
+            {
+                link: '',
+                title: 'Trash',
+                icon: 'delete'
+            },
+            {
+                link: 'showListBottomSheet($event)',
+                title: 'Settings',
+                icon: 'settings'
+            }
+        ];
 
-    })
-    .directive("scroll", function ($window) {
-        return function (scope, element, attrs) {
-            angular.element($window).bind("scroll", function () {
-                if (this.pageYOffset >= 100) {
-                    scope.fillNavigation = true;
-                } else {
-                    scope.fillNavigation = false;
+        $scope.topProductsPairs = [
+            [
+                {
+                    name: 'Ceratka',
+                    year: 2014,
+                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
+                },
+                {
+                    name: 'Tunika',
+                    year: 2014,
+                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
                 }
-                scope.$apply();
-            });
-        };
+            ],
+            [
+                {
+                    name: 'Armania',
+                    year: 2014,
+                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
+                },
+                {
+                    name: 'Trzy guziki',
+                    year: 2015,
+                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
+                }
+            ]
+        ];
     });

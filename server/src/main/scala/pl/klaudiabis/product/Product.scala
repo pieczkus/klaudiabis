@@ -87,7 +87,6 @@ class Product extends PersistentActor with AutoPassivation {
     case evt: ProductEvent =>
       log.info("Recover product huhuhuhuhu")
       this.product = product.updated(evt)
-    case _ => log.error("kurfa prod")
   }
 
   override def receiveCommand: Receive = notExists

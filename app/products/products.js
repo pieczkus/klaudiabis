@@ -1,4 +1,4 @@
-angular.module('productsModule', ['ui.router', 'ngAnimate'])
+angular.module('productsModule', ['ngAnimate'])
     .factory('ProductsService', function ($http, $q) {
         return {
             productList: null,
