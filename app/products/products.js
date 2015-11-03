@@ -1,5 +1,36 @@
-angular.module('productsModule', ['ngAnimate'])
-    .factory('ProductsService', function ($http, $q) {
+angular.module('productsModule', [])
+    .directive('productsLoader', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                loading: '='
+            },
+            templateUrl: 'directives/products-loader/_products-loader.html',
+            replace: true,
+            link: function (scope) {
+
+            }
+        }
+    })
+    .directive('topProducts', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                loading: '=',
+                products: '='
+            },
+            templateUrl: 'directives/top-products/_top-products.html',
+            replace: true,
+            link: function (scope) {
+                scope.getPairs = function () {
+                    return [
+                        [self.products[0], self.products[1]],
+                        [self.products[2], self.products[3]]
+                    ];
+                };
+            }
+        }
+    }).factory('ProductsService', function ($http, $q) {
         return {
             productList: null,
 
@@ -11,7 +42,7 @@ angular.module('productsModule', ['ngAnimate'])
                 if (this.productsLoaded()) {
                     return $q.when(self.productList);
                 } else {
-                    return $http.get('app/products/products.json').then(function (response) {
+                    return $http.get('rest/products/').then(function (response) {
                         self.productList = response.data.products;
                         return self.productList;
                     });
@@ -30,64 +61,66 @@ angular.module('productsModule', ['ngAnimate'])
                 }
             }
         };
-
     })
     .controller('productsCtrl', function ($scope, $state, ProductsService, Analytics) {
+        $scope.loading = false;
 
-        Analytics.trackPage('/products');
+        //Analytics.trackPage('/products');
         $scope.products = [];
 
         ProductsService.getProducts().then(function (productList) {
             $scope.products = productList;
+            $scope.loading = false;
         });
 
     })
-    .controller("productCtrl", function ($scope, $state, $timeout) {
+/*
+ .controller("productCtrl", function ($scope, $state, $timeout) {
 
-        $scope.loading = false;
+ $scope.loading = false;
 
-        $scope.productClick = function () {
-            if (!$scope.loading) {
-                $scope.loading = true;
-                $timeout(function () {
-                    $state.go('home.product', {id: $scope.product.id});
-                }, 1000);
-            }
-        };
+ $scope.productClick = function () {
+ if (!$scope.loading) {
+ $scope.loading = true;
+ $timeout(function () {
+ $state.go('home.product', {id: $scope.product.id});
+ }, 1000);
+ }
+ };
 
-        $scope.isLoading = function () {
-            return $scope.loading;
-        };
-    })
-    .controller("productDetailsCtrl", function ($scope, $state, $stateParams, ProductsService, Analytics) {
+ $scope.isLoading = function () {
+ return $scope.loading;
+ };
+ });
+ /*.controller("productDetailsCtrl", function ($scope, $state, $stateParams, ProductsService, Analytics) {
 
-        $scope.product = null;
+ $scope.product = null;
 
-        ProductsService.getProduct($stateParams.id).then(function (product) {
-            if (product && product.length > 0) {
-                $scope.product = product[0];
-                Analytics.trackPage('/product/' + $scope.product.name);
-            } else {
-                $state.go('home.products');
-            }
-        });
+ ProductsService.getProduct($stateParams.id).then(function (product) {
+ if (product && product.length > 0) {
+ $scope.product = product[0];
+ Analytics.trackPage('/product/' + $scope.product.name);
+ } else {
+ $state.go('home.products');
+ }
+ });
 
-        // initial image index
-        $scope.index = 0;
+ // initial image index
+ $scope.index = 0;
 
-        // if a current image is the same as requested image
-        $scope.isActive = function (index) {
-            return $scope.index === index;
-        };
+ // if a current image is the same as requested image
+ $scope.isActive = function (index) {
+ return $scope.index === index;
+ };
 
-        // show prev image
-        $scope.showPrev = function () {
-            $scope.index = ($scope.index > 0) ? --$scope.index : $scope.product.images.length - 1;
-        };
+ // show prev image
+ $scope.showPrev = function () {
+ $scope.index = ($scope.index > 0) ? --$scope.index : $scope.product.images.length - 1;
+ };
 
-        // show next image
-        $scope.showNext = function () {
-            $scope.index = ($scope.index < $scope.product.images.length - 1) ? ++$scope.index : 0;
-        };
+ // show next image
+ $scope.showNext = function () {
+ $scope.index = ($scope.index < $scope.product.images.length - 1) ? ++$scope.index : 0;
+ };
 
-    });
+ });*/

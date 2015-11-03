@@ -1,0 +1,19 @@
+<div>
+    <products-loader ng-show="loading"></products-loader>
+
+    <div ng-repeat="pair in getPairs" ng-hide="loading" ng-cloak>
+        <div class="row">
+            <div class="col s12 m6" ng-repeat="prod in pair">
+                <div class="card large waves-effect waves-block waves-light waves-orange" ng-click="">
+                    <div class="card-image" style="height: 400px">
+                        <img src="{{prod.thumbnailUrl}}">
+                    </div>
+                    <div class="card-content left-align">
+                        <p class="area">{{prod.year}}</p>
+                        <span class="card-title grey-text text-darken-4">{{prod.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

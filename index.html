@@ -38,7 +38,7 @@
         <div class="container">
             <br><br>
 
-            <h1 class="header center grey-text text-lighten-2">{{'COVER' | translate}}</h1>
+            <h1 class="header center grey-text text-lighten-4">{{'COVER' | translate}}</h1>
 
             <div class="row center">
                 <h5 class="header col s12 light grey-text text-lighten-3">{{'COVER_TEXT' | translate}} {{'COOPERATION' | translate}}</h5>
@@ -63,7 +63,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center brown-text text-darken-1"><i class="material-icons medium">flash_on</i></h2>
-                    <h5 class="center">Speeds up development</h5>
+                    <h5 class="center">{{'EXPERIENCE' | translate}}</h5>
 
                     <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom
                         components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
@@ -73,7 +73,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center brown-text text-darken-1"><i class="material-icons medium">group</i></h2>
-                    <h5 class="center">User Experience Focused</h5>
+                    <h5 class="center"></h5>
 
                     <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that
                         incorporates components and animations that provide more feedback to users. Additionally, a single underlying
@@ -100,7 +100,7 @@
     <div class="section no-pad-bot">
         <div class="container scrollspy" id="about">
             <div class="row center">
-                <h3 class="header grey-text text-lighten-2">{{'ABOUT_HEAD' | translate}}</h3>
+                <h3 class="header grey-text text-lighten-4">{{'ABOUT_HEAD' | translate}}</h3>
             </div>
             <div class="center row">
                 <h5 class="header col s12 light grey-text text-lighten-3">{{'ABOUT_PROFILE' | translate}}<br/>{{'ABOUT_MACHINES' |
@@ -120,17 +120,7 @@
             <div class="col s12 center brown-text">
                 <h4>{{'HOME.PRODUCTS' | translate}}</h4>
 
-                <div ng-repeat="pair in topProductsPairs">
-                    <div class="center row">
-                        <div class="col s6" ng-repeat="prod in pair">
-                            <div class="material-placeholder">
-                                <img class="materialboxed responsive-img intialized"
-                                     data-caption="Description about the work or project"
-                                     src="{{prod.thumbnailUrl}}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <a class="waves-effect waves-light btn orange darken-1">{{'VIEW_MORE' | translate}}</a>
             </div>
@@ -139,10 +129,19 @@
     </div>
 </div>
 
+<div class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h1 class="header center grey-text text-lighten-4">{{'HOME.CONTACT' | translate}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="assets/img/bg4.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
 <div class="container">
     <div class="section scrollspy" id="contact">
-        <h4>{{'HOME.CONTACT' | translate}}</h4>
-
         <div class="row">
 
             <form class="col s8">
@@ -156,14 +155,14 @@
 
                     <div class="input-field col s6">
                         <input id="email" type="email">
-                        <label for="email" >{{'YOUR_EMAIL' | translate}}</label>
+                        <label for="email">{{'YOUR_EMAIL' | translate}}</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="message-sub" type="text">
-                        <label for="message-sub" >{{'MESSAGE_SUBJECT' | translate}}</label>
+                        <label for="message-sub">{{'MESSAGE_SUBJECT' | translate}}</label>
                     </div>
                 </div>
 
@@ -176,7 +175,8 @@
 
 
                 <div>
-                    <a class="waves-effect waves-light btn orange darken-1">{{'SEND_MESSAGE' | translate}}<i class="mdi-content-send right"></i></a>
+                    <a class="waves-effect waves-light btn orange darken-1">{{'SEND_MESSAGE' | translate}}<i
+                            class="mdi-content-send right"></i></a>
                 </div>
             </form>
 
@@ -194,7 +194,7 @@
     </div>
 </div>
 
-<footer class="page-footer orange darken-2">
+<footer class="page-footer brown darken-4">
     <div class="footer-copyright">
         <div class="container">
             Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
@@ -215,7 +215,7 @@
 <script src="app/app.js"></script>
 <!--<script src="app/navigation/navigation.js"></script>-->
 <script src="app/language/language.js"></script>
-<!--<script src="app/products/products.js"></script>-->
+<script src="app/products/products.js"></script>
 <!--<script src="app/contact/contact.js"></script>-->
 <!--<script src="assets/js/vendor/aga.js"></script>-->
 

@@ -1,4 +1,4 @@
-angular.module('klaudiabis', ['ui.materialize', 'pascalprecht.translate', 'languageModule'])
+angular.module('klaudiabis', ['ui.materialize', 'pascalprecht.translate', 'languageModule', 'productsModule'])
     .controller('AppCtrl', function HomeCtrl($scope) {
 //        $state.go('home');
 //        $scope.$state = $state;
@@ -34,30 +34,5 @@ angular.module('klaudiabis', ['ui.materialize', 'pascalprecht.translate', 'langu
             }
         ];
 
-        $scope.topProductsPairs = [
-            [
-                {
-                    name: 'Ceratka',
-                    year: 2014,
-                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
-                },
-                {
-                    name: 'Tunika',
-                    year: 2014,
-                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
-                }
-            ],
-            [
-                {
-                    name: 'Armania',
-                    year: 2014,
-                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
-                },
-                {
-                    name: 'Trzy guziki',
-                    year: 2015,
-                    thumbnailUrl: 'http://klaudiabis.pl/assets/img/sample/ceratka1.jpg'
-                }
-            ]
-        ];
+        $scope.loading = true;
     });

@@ -33,3 +33,5 @@ libraryDependencies ++= {
     "org.scalatest" %% "scalatest" % scalaTestV % "test"
   )
 }
+
+mainClass in assembly := Some("pl.klaudiabis.main.MonolithApp")

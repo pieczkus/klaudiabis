@@ -4,7 +4,7 @@
         <file>log/klaudiabis.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>log/klaudiabis.-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>log/klaudiabis.log-%d{yyyy-MM-dd}</fileNamePattern>
 
             <!-- keep 30 days' worth of history -->
             <maxHistory>30</maxHistory>
