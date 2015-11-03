@@ -114,15 +114,13 @@
 </div>
 
 <div class="container">
-    <div class="section scrollspy" id="products">
+    <div class="section scrollspy" id="products" ng-controller="ProductsCtrl">
 
         <div class="row">
             <div class="col s12 center brown-text">
                 <h4>{{'HOME.PRODUCTS' | translate}}</h4>
 
-
-
-                <a class="waves-effect waves-light btn orange darken-1">{{'VIEW_MORE' | translate}}</a>
+                <top-products loading="loading" pairs="products"></top-products>
             </div>
         </div>
 

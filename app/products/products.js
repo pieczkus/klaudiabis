@@ -17,18 +17,21 @@ angular.module('productsModule', [])
             restrict: 'E',
             scope: {
                 loading: '=',
-                products: '='
+                pairs: '='
             },
             templateUrl: 'directives/top-products/_top-products.html',
-            replace: true,
-            link: function (scope) {
-                scope.getPairs = function () {
-                    return [
-                        [self.products[0], self.products[1]],
-                        [self.products[2], self.products[3]]
-                    ];
-                };
-            }
+            replace: true
+//            link: function (scope) {
+//                scope.pairs = [
+//                    [self.products[0], self.products[1]],
+//                    [self.products[2], self.products[3]]
+//                ];
+//
+////                scope.$watch('products', function (newValue, oldValue) {
+////                    console.log('activate has changed', newValue);
+////                    self.products = newValue;
+////                });
+//            }
         }
     }).factory('ProductsService', function ($http, $q) {
         return {
@@ -40,10 +43,11 @@ angular.module('productsModule', [])
 
             getProducts: function () {
                 if (this.productsLoaded()) {
+                    console.log("Returning previously loaded prods");
                     return $q.when(self.productList);
                 } else {
-                    return $http.get('rest/products/').then(function (response) {
-                        self.productList = response.data.products;
+                    return $http.get('api/products/').then(function (response) {
+                        self.productList = response.data;
                         return self.productList;
                     });
                 }
@@ -54,7 +58,7 @@ angular.module('productsModule', [])
                 if (!this.productsLoaded()) {
                     return $q.when(null);
                 } else {
-
+                    console.log("loading prods...");
                     return $q.when(self.productList.filter(function (elem) {
                         return elem.id == productId;
                     }));
@@ -62,18 +66,28 @@ angular.module('productsModule', [])
             }
         };
     })
-    .controller('productsCtrl', function ($scope, $state, ProductsService, Analytics) {
-        $scope.loading = false;
+    .controller('ProductsCtrl', function ($scope, ProductsService) {
+        $scope.loading = true;
 
         //Analytics.trackPage('/products');
         $scope.products = [];
 
+        function pairs(arr) {
+            var pairs = [];
+
+            for (var i = 0; i < arr.length; i = i + 2) {
+                pairs.push(arr.slice(i, i + 2));
+            }
+            return pairs;
+        }
+
+        console.log("Controller loading products, I think");
         ProductsService.getProducts().then(function (productList) {
-            $scope.products = productList;
+            $scope.products = pairs(productList);
             $scope.loading = false;
         });
 
-    })
+    });
 /*
  .controller("productCtrl", function ($scope, $state, $timeout) {
 
