@@ -1,5 +1,19 @@
-angular.module('klaudiabis', ['ui.materialize', 'pascalprecht.translate', 'languageModule', 'productsModule'])
-    .controller('AppCtrl', function HomeCtrl($scope) {
+angular.module('klaudiabis', ['ngRoute', 'ui.materialize', 'pascalprecht.translate', 'languageModule', 'productsModule'])
+    .config(['$routeProvider',
+        function ($routeProvider) {
+            $routeProvider.
+                when('/', {
+                    templateUrl: 'app/home/_home.html',
+                    controller: 'ProductsCtrl'
+                }).
+                when('/product/:productId', {
+                    templateUrl: 'app/products/_details.html',
+                    controller: 'ProductDetailCtrl'
+                }).
+                otherwise({
+                    redirectTo: '/'
+                });
+        }]).controller('AppCtrl', function HomeCtrl($scope) {
 //        $state.go('home');
 //        $scope.$state = $state;
 //        Analytics.trackPage('/');

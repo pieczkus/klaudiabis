@@ -1,0 +1,12 @@
+<div>
+    <div ng-repeat="pair in pairs" ng-hide="loading">
+        <div class="row">
+            <div class="col s12 m6" ng-repeat="prod in pair">
+                <product details="prod"></product>
+            </div>
+        </div>
+    </div>
+
+    <products-loader ng-show="loading"></products-loader>
+    <a class="waves-effect waves-light btn orange darken-1" ng-hide="loading">{{'VIEW_MORE' | translate}}</a>
+</div>

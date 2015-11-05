@@ -35,7 +35,7 @@ trait ProductService extends SprayJsonSupport with ProductProtocols {
           }
         } ~ (get & path(JavaUUID / "pictures")) { productId =>
           complete {
-            (product ? GetProductPictures(ProductId(productId.toString))).mapTo[Map[String, String]]
+            (product ? GetProductPictures(ProductId(productId.toString))).mapTo[List[String]]
           }
         } ~ (get & path(JavaUUID)) { productId =>
           metricsSummary ! ViewProductCommand(ProductId(productId.toString))

@@ -1,19 +1,158 @@
-<div id="navigation" ui-view="navigation"></div>
-<div class="site-wrapper">
-
-</div>
-<div class="main">
-    <div class="page-title">
+<div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot scrollspy" id="home">
         <div class="container">
-            <h1 class="title">{{$state.current.name | uppercase | translate}}</h1>
+            <br><br>
+
+            <h1 class="header center grey-text text-lighten-4">{{'COVER' | translate}}</h1>
+
+            <div class="row center">
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'COVER_TEXT' | translate}} {{'COOPERATION' | translate}}</h5>
+            </div>
+            <div class="row center">
+                <a href="#about" id="download-button"
+                   class="btn-large waves-effect waves-light orange darken-1">{{'MORE' | translate}}</a>
+            </div>
+            <br><br>
+
         </div>
     </div>
-    <div id="content" ui-view="content" class="container"></div>
-
+    <div class="parallax"><img src="assets/img/bg2.jpg" alt="Unsplashed background img 1"></div>
 </div>
-<div id="footer" class="footer">
-    <div class="footer-content">
-        <hr/>
-        <p>{{'FOOTER' | translate}} <a href="https://twitter.com/pieczkus" target="_blank">@pieczkus</a>.</p>
+
+
+<div class="container">
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text text-darken-1"><i class="material-icons medium">flash_on</i></h2>
+                    <h5 class="center">{{'EXPERIENCE' | translate}}</h5>
+
+                    <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom
+                        components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text text-darken-1"><i class="material-icons medium">group</i></h2>
+                    <h5 class="center"></h5>
+
+                    <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that
+                        incorporates components and animations that provide more feedback to users. Additionally, a single underlying
+                        responsive system across all platforms allow for a more unified user experience.</p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text text-darken-1"><i class="material-icons medium">settings</i></h2>
+                    <h5 class="center">Easy to work with</h5>
+
+                    <p class="light">We have provided detailed documentation as well as specific code examples to help new users get
+                        started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container scrollspy" id="about">
+            <div class="row center">
+                <h3 class="header grey-text text-lighten-4">{{'ABOUT_HEAD' | translate}}</h3>
+            </div>
+            <div class="center row">
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'ABOUT_PROFILE' | translate}}<br/>{{'ABOUT_MACHINES' |
+                    translate}}</h5>
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'ABOUT_COOPERATION' | translate}}</h5>
+                <h5 class="header col s12 light grey-text text-lighten-3">{{'COOPERATION' | translate}}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="assets/img/bg3.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
+<div class="container">
+    <div class="section scrollspy" id="products">
+
+        <div class="row">
+            <div class="col s12 center brown-text">
+                <h4>{{'HOME.PRODUCTS' | translate}}</h4>
+
+                <products loading="loading" pairs="products"></products>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="parallax-container">
+    <div class="section no-pad-bot">
+        <div class="container">
+            <div class="row center">
+                <h1 class="header center grey-text text-lighten-4">{{'HOME.CONTACT' | translate}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="parallax"><img src="assets/img/bg4.jpg" alt="Unsplashed background img 2"></div>
+</div>
+
+<div class="container">
+    <div class="section scrollspy" id="contact">
+        <div class="row">
+
+            <form class="col s8">
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" type="text">
+                        <label for="name">{{'YOUR_NAME' | translate}}</label>
+                    </div>
+
+
+                    <div class="input-field col s6">
+                        <input id="email" type="email">
+                        <label for="email">{{'YOUR_EMAIL' | translate}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="message-sub" type="text">
+                        <label for="message-sub">{{'MESSAGE_SUBJECT' | translate}}</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="text_area" class="materialize-textarea"></textarea>
+                        <label for="text_area">{{'YOUR_MESSAGE' | translate}}</label>
+                    </div>
+                </div>
+
+
+                <div>
+                    <a class="waves-effect waves-light btn orange darken-1">{{'SEND_MESSAGE' | translate}}<i
+                            class="mdi-content-send right"></i></a>
+                </div>
+            </form>
+
+            <div class="col center s4 m4">
+                <h5>PPHU Klaudia Bis</h5>
+                <h6>Sosnowa 28</h6>
+                <h6>42-360 Poraj</h6>
+
+                <h5><i class="material-icons orange-text darken-1">phone</i>+48 537 520 800</h5>
+                <h5><i class="material-icons orange-text darken-1">email</i>kontakt@klaudiabis.pl</h5>
+            </div>
+
+
+        </div>
     </div>
 </div>
