@@ -6,37 +6,9 @@ angular.module('productsModule', [])
                 loading: '='
             },
             templateUrl: 'directives/products-loader/_products-loader.html',
-            replace: true,
-            link: function (scope) {
-
-            }
-        }
-    })
-    .directive('products', function () {
-        return {
-            restrict: 'E',
-            scope: {
-                loading: '=',
-                pairs: '='
-            },
-            templateUrl: 'directives/products/_products.html',
             replace: true
         }
-    }).directive('product', ['$location', function ($location) {
-        return {
-            restrict: 'E',
-            scope: {
-                details: '='
-            },
-            templateUrl: 'directives/products/_product.html',
-            replace: true,
-            link: function ($scope) {
-                $scope.selectProduct = function () {
-                    $location.path("/product/" + this.details.productId.id);
-                }
-            }
-        }
-    }]).factory('ProductsService', function ($http, $q) {
+    }).factory('ProductsService', function ($http, $q) {
         return {
             productList: null,
 
@@ -74,8 +46,7 @@ angular.module('productsModule', [])
                 });
             }
         };
-    })
-    .controller('ProductsCtrl', function ($scope, ProductsService) {
+    }).controller('ProductsCtrl', function ($scope, ProductsService) {
         $scope.loading = true;
 
         //Analytics.trackPage('/products');
@@ -94,17 +65,16 @@ angular.module('productsModule', [])
         $('.parallax').parallax();
         $('.scrollspy').scrollSpy();
 
-
-
         ProductsService.getProducts().then(function (productList) {
             $scope.products = pairs(productList);
             $scope.loading = false;
         });
 
-    }).controller("ProductCtrl", function ($scope, $location, ProductsService) {
+    }).controller("ProductCtrl", function ($scope, $location, ProductsService, MetricsService) {
 
         $scope.imagesLoading = false;
         $scope.pictures = [];
+        $scope.views = 0;
 
         $scope.loadPictures = function () {
             if (!$scope.imagesLoading && $scope.pictures.length === 0) {
@@ -116,9 +86,17 @@ angular.module('productsModule', [])
             }
         };
 
+        $scope.selectProduct = function () {
+            $location.path("/product/" + $scope.prod.productId.id);
+        };
+
         $scope.isLoading = function () {
             return $scope.loading;
         };
+
+        MetricsService.getProductMetric($scope.prod.productId.id).then(function (count) {
+            return $scope.views = count;
+        });
     });
 /*.controller("productDetailsCtrl", function ($scope, $state, $stateParams, ProductsService, Analytics) {
 

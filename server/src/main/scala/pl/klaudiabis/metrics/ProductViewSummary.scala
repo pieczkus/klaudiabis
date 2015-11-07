@@ -6,7 +6,7 @@ import akka.cluster.pubsub.DistributedPubSubMediator.{Subscribe, Publish}
 import akka.persistence.{SnapshotOffer, PersistentActor}
 import pl.klaudiabis.common.{MetricId, AutoPassivation, ProductId}
 import pl.klaudiabis.metrics.ProductViewMetric.RecordView
-import pl.klaudiabis.metrics.ProductViewSummary.{GetViewsSummary, NewProductView, ProductViewedEvent, ViewProductCommand}
+import pl.klaudiabis.metrics.ProductViewSummary._
 import pl.klaudiabis.product.ProductProcessor.ProductAddedEvent
 
 object ProductViewSummary {
@@ -22,6 +22,8 @@ object ProductViewSummary {
   case class NewProductView(productId: ProductId)
 
   case object GetViewsSummary
+
+  case class GetProductView(productId: ProductId)
 
 }
 
@@ -60,6 +62,9 @@ class ProductViewSummary(productMetric: ActorRef) extends PersistentActor with A
 
     case GetViewsSummary =>
       sender() ! summary.productViews
+
+    case GetProductView(productId) =>
+      sender() ! Metric(summary.get(productId))
   }
 
 }

@@ -28,3 +28,5 @@ case class ProductViews(viewsByDay: Map[String, Long]) extends AnyVal {
 object ProductViews {
   val empty = ProductViews(Map.empty.withDefaultValue(0))
 }
+
+case class Metric(value: Long)

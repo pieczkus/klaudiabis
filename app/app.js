@@ -1,4 +1,4 @@
-angular.module('klaudiabis', ['ngRoute', 'ui.materialize', 'pascalprecht.translate', 'languageModule', 'productsModule'])
+angular.module('klaudiabis', ['ngRoute', 'ui.materialize', 'pascalprecht.translate', 'languageModule', 'productsModule', 'metricsModule'])
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider.

@@ -85,7 +85,25 @@
             <div class="col s12 center brown-text">
                 <h4>{{'HOME.PRODUCTS' | translate}}</h4>
 
-                <products loading="loading" pairs="products"></products>
+                <div ng-repeat="pair in products" ng-hide="loading">
+                    <div class="row">
+                        <div class="col s12 m6" ng-repeat="prod in pair">
+                            <div class="card large" ng-click="selectProduct(prod.productId.id)" ng-controller="ProductCtrl">
+                                <div class="card-image waves-effect waves-block waves-light waves-orange" style="height: 400px">
+                                    <img class="activator" ng-src="{{prod.thumbnailUrl}}">
+                                </div>
+                                <div class="card-content left-align activator">
+                                    <p class="area">{{prod.year}}<i class="material-icons right">visibility</i><span class="right">{{views}}</span>
+                                    </p>
+                                    <span class="card-title grey-text text-darken-4">{{prod.name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <products-loader ng-show="loading"></products-loader>
+                <a class="waves-effect waves-light btn orange darken-1" ng-hide="loading">{{'VIEW_MORE' | translate}}</a>
             </div>
         </div>
 

@@ -8,11 +8,11 @@ import akka.http.scaladsl.server._
 import akka.stream.Materializer
 import pl.klaudiabis.common.{CommonProtocols, ProductId}
 import pl.klaudiabis.metrics.ProductViewMetric.GetAllViews
-import pl.klaudiabis.metrics.ProductViewSummary.GetViewsSummary
+import pl.klaudiabis.metrics.ProductViewSummary.{GetProductView, GetViewsSummary}
 
 import scala.concurrent.ExecutionContextExecutor
 
-trait MetricsService extends SprayJsonSupport with CommonProtocols {
+trait MetricsService extends SprayJsonSupport with MetricProtocols {
 
   implicit val system: ActorSystem
 
@@ -26,7 +26,11 @@ trait MetricsService extends SprayJsonSupport with CommonProtocols {
   def metricsRoute(metricsSummary: ActorRef, productMetric: ActorRef): Route = {
     logRequest("metrics-microservice") {
       pathPrefix("metrics") {
-        (get & path(JavaUUID)) { productId =>
+        (get & path(JavaUUID / "count")) { productId =>
+          complete {
+            (metricsSummary ? GetProductView(ProductId(productId.toString))).mapTo[Metric]
+          }
+        } ~ (get & path(JavaUUID)) { productId =>
           complete {
             (productMetric ? GetAllViews(ProductId(productId.toString))).mapTo[Map[String, Long]]
           }
