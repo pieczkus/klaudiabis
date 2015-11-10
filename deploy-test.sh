@@ -9,7 +9,7 @@ case "$1" in
         echo "Doing deploy client APP"
 
         scp -r app rpif1:~/www/$APP
-#        scp -r assets rpif1:~/www/$APP
+        scp -r assets rpif1:~/www/$APP
         scp -r directives rpif1:~/www/$APP
         scp index.html rpif1:~/www/$APP
         ;;

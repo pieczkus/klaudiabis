@@ -47,6 +47,11 @@ angular.module('productsModule', [])
             }
         };
     }).controller('ProductsCtrl', function ($scope, ProductsService) {
+
+        var pageSize = 1;
+
+        var pagesShown = 1;
+
         $scope.loading = true;
 
         //Analytics.trackPage('/products');
@@ -69,6 +74,18 @@ angular.module('productsModule', [])
             $scope.products = pairs(productList);
             $scope.loading = false;
         });
+
+        $scope.paginationLimit = function (data) {
+            return pageSize * pagesShown;
+        };
+
+        $scope.hasMoreItemsToShow = function () {
+            return pagesShown < ($scope.products.length / pageSize);
+        };
+
+        $scope.showMoreItems = function () {
+            pagesShown = pagesShown + 1;
+        };
 
     }).controller("ProductCtrl", function ($scope, $location, ProductsService, MetricsService) {
 
