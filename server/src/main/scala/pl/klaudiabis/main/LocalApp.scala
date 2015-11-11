@@ -24,6 +24,7 @@ object LocalApp extends App with Monolith {
           journalStartUp(ActorPath.fromString(s"akka.tcp://$actorSystemName@127.0.0.1:$p/user/store"))
         }
         Http().bindAndHandle(route, "localhost", 10000 + p.toInt)
+        Thread.sleep(5000)
     }
   }
 

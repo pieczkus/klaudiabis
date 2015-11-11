@@ -1,6 +1,6 @@
 package pl.klaudiabis.contact
 
-import akka.actor.{Terminated, ActorRef, ActorLogging}
+import akka.actor.{Props, Terminated, ActorRef, ActorLogging}
 import akka.cluster.client.ClusterClientReceptionist
 import akka.persistence.{SnapshotOffer, PersistentActor}
 import pl.klaudiabis.contact.ContactMaster._
@@ -10,9 +10,13 @@ import scala.concurrent.duration.Deadline
 
 object ContactMaster {
 
+  val props = Props[ContactMaster]
+
   case object WorkIsReady
 
   case class Ack(id: String)
+
+  case object GetWorkers
 
   private sealed trait WorkerStatus
 
@@ -107,6 +111,9 @@ class ContactMaster extends PersistentActor with ActorLogging {
           notifyWorkers()
         }
       }
+
+    case GetWorkers =>
+      sender() ! workers.keySet
 
     case Terminated(worker) =>
       workers = workers.filter(_._2.ref != worker)

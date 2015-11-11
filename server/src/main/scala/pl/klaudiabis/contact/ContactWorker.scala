@@ -12,6 +12,8 @@ import scala.concurrent.duration.Duration
 
 object ContactWorker {
 
+  def props(clusterClient: ActorRef, workExecutorProps: Props): Props = Props(classOf[ContactWorker], clusterClient, workExecutorProps)
+
   case class RegisterWorker(workerId: String)
 
   case class WorkerRequestsWork(workerId: String)
@@ -29,7 +31,7 @@ class ContactWorker(clusterClient: ActorRef, workExecutorProps: Props) extends A
   import pl.klaudiabis.common.Timeouts.defaults._
 
   val workerId = UUID.randomUUID().toString
-  val masterPath = "/user/contact-master/singleton"
+  val masterPath = "/user/master/singleton"
 
   var currentWorkId: Option[String] = None
 
