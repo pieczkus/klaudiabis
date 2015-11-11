@@ -26,6 +26,10 @@ trait ContactService extends SprayJsonSupport with ContactProtocols {
 
 
           complete {
+            StatusCodes.Created
+          }
+        } ~ (get & path("worker")) {
+          complete {
             StatusCodes.OK
           }
         }

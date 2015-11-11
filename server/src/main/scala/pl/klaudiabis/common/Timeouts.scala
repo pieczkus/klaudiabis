@@ -7,6 +7,8 @@ object Timeouts {
 
   object defaults {
     implicit val defaultTimeout = Timeout(3.seconds)
+    implicit val contactWorkTimeout = 10.seconds
+    implicit val defaultContactTimeout = 15.seconds
   }
 
 }
