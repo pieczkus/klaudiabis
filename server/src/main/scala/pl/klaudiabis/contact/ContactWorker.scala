@@ -29,6 +29,7 @@ object ContactWorker {
 class ContactWorker(clusterClient: ActorRef, workExecutorProps: Props) extends Actor with ActorLogging {
 
   import pl.klaudiabis.common.Timeouts.defaults._
+  import scala.concurrent.duration._
 
   val workerId = UUID.randomUUID().toString
   val masterPath = "/user/master/singleton"
@@ -40,17 +41,23 @@ class ContactWorker(clusterClient: ActorRef, workExecutorProps: Props) extends A
     case None => throw new IllegalStateException("Not working")
   }
 
-  @scala.throws[Exception](classOf[Exception])
-  override def preStart(): Unit = {
-    sendToMaster(RegisterWorker(workerId))
-  }
+  import context.dispatcher
+  val registerTask = context.system.scheduler.schedule(0.seconds, registerInterval, clusterClient,
+      SendToAll("/user/master/singleton", RegisterWorker(workerId)))
+
+  override def postStop(): Unit = registerTask.cancel()
 
   val workExecutor = context.watch(context.actorOf(workExecutorProps, "exec"))
 
   override def supervisorStrategy = OneForOneStrategy() {
-    case _: ActorInitializationException => Stop
-    case _: DeathPactException => Stop
+    case _: ActorInitializationException =>
+      log.warning("ActorInitializationException -> Stop")
+      Stop
+    case _: DeathPactException =>
+      log.warning("DeathPactException -> Stop")
+      Stop
     case _: Exception =>
+      log.warning("Exception -> Restart")
       currentWorkId foreach { workId => sendToMaster(WorkFailed(workerId, workId))}
       context.become(idle)
       Restart
@@ -72,7 +79,7 @@ class ContactWorker(clusterClient: ActorRef, workExecutorProps: Props) extends A
 
   def working: Receive = {
     case WorkComplete(result) =>
-      log.info("Work is complete. Result {}.", result)
+      log.info("Work is complete. Result: {}.", result)
       sendToMaster(WorkIsDone(workerId, workId, result))
       context.setReceiveTimeout(contactWorkTimeout)
       context.become(waitForWorkIsDoneAck(result))
