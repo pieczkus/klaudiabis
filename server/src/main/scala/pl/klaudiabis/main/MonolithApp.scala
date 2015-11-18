@@ -23,7 +23,9 @@ object MonolithApp extends App with Monolith {
     val seedingConfig = ConfigFactory.parseString(s"akka.cluster.seed-nodes=[${rawConfig.getString("akka.cluster.seed-nodes").split(",").map(_.trim).mkString("\"", "\",\"", "\"")}]")
     val journalConfig = ConfigFactory.parseString(s"cassandra-journal.contact-points=[${rawConfig.getString("cassandra-journal.contact-points").split(",").map(_.trim).mkString("\"", "\",\"", "\"")}]")
     val snapshotConfig = ConfigFactory.parseString(s"cassandra-snapshot-store.contact-points=[${rawConfig.getString("cassandra-snapshot-store.contact-points").split(",").map(_.trim).mkString("\"", "\",\"", "\"")}]")
+    val singletonConfig = ConfigFactory.parseString(s"akka.contact-points=[${rawConfig.getString("akka.contact-points").split(",").map(_.trim).mkString("\"", "\",\"", "\"")}]")
     seedingConfig
+      .withFallback(singletonConfig)
       .withFallback(journalConfig)
       .withFallback(snapshotConfig)
       .withFallback(clusterShardingConfig)

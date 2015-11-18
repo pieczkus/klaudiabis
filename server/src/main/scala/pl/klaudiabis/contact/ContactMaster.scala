@@ -116,6 +116,7 @@ class ContactMaster extends PersistentActor with ActorLogging {
       sender() ! workers.keySet
 
     case Terminated(worker) =>
+      log.info(s"Worker terminated $worker")
       workers = workers.filter(_._2.ref != worker)
   }
 

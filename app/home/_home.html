@@ -123,43 +123,50 @@
     <div class="parallax"><img src="assets/img/bg4.jpg" alt="Unsplashed background img 2"></div>
 </div>
 
-<div class="container">
+<div class="container" ng-controller="ContactCtrl">
     <div class="section scrollspy" id="contact">
         <div class="row">
 
-            <form class="col s8">
+            <form role="form" name="contactForm" class="col s8">
 
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="name" type="text">
-                        <label for="name">{{'YOUR_NAME' | translate}}</label>
+                        <input id="name" type="text" ng-model="message.name" required="required" class="validate">
+                        <label for="name" data-error="{{'INVALID_YOUR_NAME' | translate}}" data-success="Ok">{{'YOUR_NAME' |
+                            translate}}</label>
                     </div>
 
 
                     <div class="input-field col s6">
-                        <input id="email" type="email">
-                        <label for="email">{{'YOUR_EMAIL' | translate}}</label>
+                        <input id="email" type="email" ng-model="message.email" required="required" class="validate">
+                        <label for="email" data-error="{{'INVALID_YOUR_EMAIL' | translate}}" data-success="Ok">{{'YOUR_EMAIL' |
+                            translate}}</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="message-sub" type="text">
-                        <label for="message-sub">{{'MESSAGE_SUBJECT' | translate}}</label>
+                        <input id="message-sub" type="text" ng-model="message.subject" required="required" class="validate">
+                        <label for="message-sub" data-error="{{'INVALID_MESSAGE_SUBJECT' | translate}}" data-success="Ok">{{'MESSAGE_SUBJECT'
+                            | translate}}</label>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="text_area" class="materialize-textarea"></textarea>
-                        <label for="text_area">{{'YOUR_MESSAGE' | translate}}</label>
+                        <textarea id="text_area" class="materialize-textarea" ng-model="message.body" required="required"
+                                  class="validate"></textarea>
+                        <label for="text_area" data-error="{{'INVALID_YOUR_MESSAGE' | translate}}" data-success="Ok">{{'YOUR_MESSAGE' |
+                            translate}}</label>
                     </div>
                 </div>
-
 
                 <div>
-                    <a class="waves-effect waves-light btn orange darken-1">{{'SEND_MESSAGE' | translate}}<i
-                            class="mdi-content-send right"></i></a>
+                    <a class="btn orange darken-1" ng-click="send()"
+                       ng-class="{'disabled' : !contactForm.$valid, 'waves-effect waves-light' : contactForm.$valid}"
+                       ng-hide="sendingMessage" ng-disabled="!contactForm.$valid">{{'SEND_MESSAGE' |
+                        translate}}<i class="material-icons right">chat_bubble_outline</i></a>
+                    <products-loader ng-show="sendingMessage"></products-loader>
                 </div>
             </form>
 

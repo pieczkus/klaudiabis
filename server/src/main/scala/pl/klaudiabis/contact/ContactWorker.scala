@@ -92,7 +92,9 @@ class ContactWorker(clusterClient: ActorRef, workExecutorProps: Props) extends A
   }
 
   override def unhandled(message: Any): Unit = message match {
-    case Terminated(`workExecutor`) => context.stop(self)
+    case Terminated(`workExecutor`) =>
+      log.warning(s"$workerId -> Worker executor terminated")
+      context.stop(self)
     case WorkIsReady =>
     case _ => super.unhandled(message)
   }
