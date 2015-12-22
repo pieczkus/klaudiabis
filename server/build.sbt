@@ -30,6 +30,9 @@ libraryDependencies ++= {
     "org.iq80.leveldb" % "leveldb" % "0.7",
     "org.scalaz" %% "scalaz-core" % "7.1.1",
     "ch.qos.logback" % "logback-classic" % "1.1.3",
+    "com.nimbusds" % "nimbus-jose-jwt" % "4.7",
+    "joda-time" % "joda-time" % "2.9.1",
+    "org.apache.commons" % "commons-email" % "1.4",
     "org.scalatest" %% "scalatest" % scalaTestV % "test"
   )
 }

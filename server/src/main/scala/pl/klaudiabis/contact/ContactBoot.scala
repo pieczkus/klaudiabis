@@ -29,14 +29,16 @@ object ContactBoot {
         ClusterClientSettings(system).withInitialContacts(initialContacts.to[Set])),
       "clusterClient")
 
-    val contactWorker = system.actorOf(ContactWorker.props(clusterClient, Props[ContactWorkExecutor]), "worker")
+    val config = system.settings.config
+    val smtpConfig = SmtpConfig(user = config.getString("smtp.user"), password = config.getString("smtp.password"), host = config.getString("smtp.host"))
+    val contactWorker = system.actorOf(ContactWorker.props(clusterClient, Props(classOf[ContactWorkExecutor], smtpConfig)), "worker")
 
     val masterProxy = system.actorOf(
-        ClusterSingletonProxy.props(
-          settings = ClusterSingletonProxySettings(system),
-          singletonManagerPath = "/user/master"
-        ),
-        name = "masterProxy")
+      ClusterSingletonProxy.props(
+        settings = ClusterSingletonProxySettings(system),
+        singletonManagerPath = "/user/master"
+      ),
+      name = "masterProxy")
 
     ContactBoot(contactMaster, contactWorker, masterProxy)
   }

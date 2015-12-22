@@ -8,8 +8,6 @@ import akka.cluster.client.ClusterClient.SendToAll
 import pl.klaudiabis.contact.ContactMaster.{Ack, WorkIsReady}
 import pl.klaudiabis.contact.ContactWorker._
 
-import scala.concurrent.duration.Duration
-
 object ContactWorker {
 
   def props(clusterClient: ActorRef, workExecutorProps: Props): Props = Props(classOf[ContactWorker], clusterClient, workExecutorProps)
